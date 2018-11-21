@@ -33,6 +33,10 @@ public class AbstractActivity extends Activity {
                     intent = new Intent(getApplicationContext(), Spells.class);
                     startActivity(intent);
                     return true;
+                case R.id.navigation_character:
+                    intent = new Intent(getApplicationContext(), Character.class);
+                    startActivity(intent);
+                    return true;
             }
             return false;
         }
