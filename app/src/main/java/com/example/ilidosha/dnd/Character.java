@@ -17,14 +17,20 @@ public class Character extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.navigation_home:
-//                    mTextMessage.setText(R.string.title_home);
+                case R.id.navigation_dices:
+                    mTextMessage.setText("dices");
                     return true;
-                case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
+                case R.id.navigation_inventory:
+                    mTextMessage.setText("inv");
                     return true;
-                case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
+                case R.id.navigation_skills:
+                    mTextMessage.setText("skills");
+                    return true;
+                case R.id.navigation_spells:
+                    mTextMessage.setText("spells");
+                    return true;
+                case R.id.navigation_character:
+                    mTextMessage.setText("chr");
                     return true;
             }
             return false;
