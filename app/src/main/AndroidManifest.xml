@@ -22,6 +22,7 @@
         <activity android:name=".Inventory"/>
         <activity android:name=".Dices"/>
         <activity android:name=".Spells"/>
+        <activity android:name=".AbstractActivity"/>
     </application>
 
 </manifest>
