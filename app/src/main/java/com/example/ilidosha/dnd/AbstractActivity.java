@@ -10,43 +10,38 @@ import android.view.MenuItem;
 
 public class AbstractActivity extends Activity {
 
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+    protected BottomNavigationView navigation;
+    protected BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            Intent intent;
+            Intent intent = null;
             switch (item.getItemId()) {
                 case R.id.navigation_dices:
                     intent = new Intent(getApplicationContext(), Dices.class);
-                startActivity(intent);
-                return true;
+                    break;
                 case R.id.navigation_inventory:
                     intent = new Intent(getApplicationContext(), Inventory.class);
-                    startActivity(intent);
-                    return true;
+                    break;
                 case R.id.navigation_skills:
                     intent = new Intent(getApplicationContext(), Skills.class);
-                    startActivity(intent);
-                    return true;
+                    break;
                 case R.id.navigation_spells:
                     intent = new Intent(getApplicationContext(), Spells.class);
-                    startActivity(intent);
-                    return true;
+                    break;
                 case R.id.navigation_character:
                     intent = new Intent(getApplicationContext(), Character.class);
-                    startActivity(intent);
-                    return true;
+                    break;
             }
-            return false;
+            startActivity(intent);
+            return true;
         }
     };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.abstract_layout);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 }

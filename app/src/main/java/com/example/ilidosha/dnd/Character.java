@@ -12,8 +12,11 @@ public class Character extends AbstractActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character);
+        navigation = findViewById(R.id.navigation);
+
+        navigation.setSelectedItemId(R.id.navigation_character);
+        super.onCreate(savedInstanceState);
     }
 
 }
