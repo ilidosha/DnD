@@ -19,8 +19,8 @@ public class AbstractActivity extends Activity {
             switch (item.getItemId()) {
                 case R.id.navigation_dices:
                     intent = new Intent(getApplicationContext(), Dices.class);
-                    startActivity(intent);
-                    return true;
+                startActivity(intent);
+                return true;
                 case R.id.navigation_inventory:
                     intent = new Intent(getApplicationContext(), Inventory.class);
                     startActivity(intent);

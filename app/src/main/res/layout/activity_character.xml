@@ -21,6 +21,7 @@
     <include layout="@layout/abstract_layout"
              android:id="@+id/inc"
              android:layout_width="fill_parent"
-             android:layout_height="50dp"/>
+             android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>
