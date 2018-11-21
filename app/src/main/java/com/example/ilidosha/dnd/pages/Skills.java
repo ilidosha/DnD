@@ -1,8 +1,10 @@
-package com.example.ilidosha.dnd;
+package com.example.ilidosha.dnd.pages;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import com.example.ilidosha.dnd.AbstractActivity;
+import com.example.ilidosha.dnd.R;
 
 public class Skills extends AbstractActivity {
     @Override
