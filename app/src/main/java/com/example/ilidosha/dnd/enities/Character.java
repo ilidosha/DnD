@@ -22,6 +22,6 @@ public class Character {
     List<String> languages;
     List<Skill> skills;
     Money money;
-    Weapon weapon;
+    List<Weapon> weapons;
 
 }
