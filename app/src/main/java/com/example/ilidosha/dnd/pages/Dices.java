@@ -1,17 +1,20 @@
 package com.example.ilidosha.dnd.pages;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import com.example.ilidosha.dnd.AbstractActivity;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import com.example.ilidosha.dnd.R;
 
-public class Dices extends AbstractActivity {
+public class Dices extends Fragment {
+    @Nullable
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        setContentView(R.layout.activity_dices);
-        navigation = findViewById(R.id.navigation);
-
-        navigation.setSelectedItemId(R.id.navigation_dices);
-        super.onCreate(savedInstanceState);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_dices, container,
+                false);
+        return view;
     }
 }
