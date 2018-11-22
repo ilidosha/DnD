@@ -8,6 +8,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import com.example.ilidosha.dnd.R;
@@ -50,10 +51,9 @@ public class LayoutPage extends FragmentActivity {
             if (fragment == null)
                 return false;
             FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager
-                    .beginTransaction()
-                    .replace(R.id.content_frame, fragment)
-                    .commit();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.replace(R.id.content_frame, fragment);
+            transaction.commit();
             return true;
         }
     };
