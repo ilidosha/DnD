@@ -7,6 +7,7 @@ public class Character {
     Race race;
     Specialization specialization;
     int level;
+    int masteryLevel;
     Archetype archetype;
     List<Item> items;
     List<Spell> spells;
