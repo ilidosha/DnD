@@ -20,78 +20,104 @@
                     app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.0"
                     android:layout_height="302dp" android:scaleType="centerCrop"
                     android:contentDescription="@string/sanyapers"/>
-            <TextView
-                    android:text="Имя персонажа"
+            <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textViewCharacterName"
-                    tools:layout_editor_absoluteY="313dp"/>
-            <EditText
-                    android:layout_width="185dp"
-                    android:layout_height="42dp"
-                    android:inputType="textPersonName"
-                    android:text="Имя"
-                    android:ems="10"
-                    tools:layout_editor_absoluteY="331dp" android:id="@+id/editTextCharacterName"
-                    app:layout_constraintStart_toStartOf="parent" android:textAlignment="viewStart"
-                    android:singleLine="true" android:layout_gravity="left"/>
-            <TextView
-                    android:text="Класс"
-                    android:layout_width="177dp"
-                    android:layout_height="wrap_content" tools:layout_editor_absoluteY="312dp"
-                    android:id="@+id/textViewSpecialization" app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_gravity="right"/>
-            <EditText
-                    android:layout_width="190dp"
-                    android:layout_height="42dp"
-                    android:inputType="textPersonName"
-                    android:text="Класс"
-                    android:ems="10"
-                    tools:layout_editor_absoluteY="332dp" android:id="@+id/editTextSpecialization"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_gravity="top|right"/>
-            <TextView
-                    android:text="LVL"
+                    android:layout_height="60dp">
+                <CheckBox
+                        android:text="Вдохновение"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/chackBoxInspiration"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/textViewMasteryLevel"
+                        android:layout_marginStart="252dp"
+                        android:textColor="@android:color/black" android:textStyle="bold"
+                        android:shadowColor="@android:color/background_light" android:singleLine="true"/>
+                <TextView
+                        android:text="Уровень мастерства"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/textViewMasteryLevel"
+                        tools:layout_editor_absoluteX="8dp" android:layout_marginTop="8dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:textStyle="bold" android:textAlignment="viewStart"
+                        android:textColor="@android:color/black"/>
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" tools:layout_editor_absoluteY="402dp"
-                    tools:layout_editor_absoluteX="0dp" android:id="@+id/textViewLVL" android:fontFamily="cursive"
-                    android:textSize="30sp"/>
-            <Button
-                    android:onClick="onExpBoostButton"
-                    android:text="Опыт"
+                    android:layout_height="148dp">
+                <EditText
+                        android:layout_width="185dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapSentences"
+                        android:ems="10"
+                        tools:layout_editor_absoluteY="331dp" android:id="@+id/editTextCharacterName"
+                        app:layout_constraintStart_toStartOf="parent" android:textAlignment="viewStart"
+                        android:singleLine="true" android:layout_gravity="left" android:layout_marginTop="20dp"
+                        android:hint="Имя"/>
+                <TextView
+                        android:text="Имя персонажа"
+                        android:layout_width="185dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textViewCharacterName"
+                        tools:layout_editor_absoluteY="313dp" android:layout_marginTop="0dp"/>
+                <EditText
+                        android:layout_width="185dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapSentences"
+                        android:ems="10"
+                        tools:layout_editor_absoluteY="332dp" android:id="@+id/editTextSpecialization"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_gravity="top|right" android:layout_marginTop="20dp" android:hint="Класс"/>
+                <TextView
+                        android:text="Класс"
+                        android:layout_width="185dp"
+                        android:layout_height="wrap_content" tools:layout_editor_absoluteY="312dp"
+                        android:id="@+id/textViewSpecialization" app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_gravity="right"/>
+                <TextView
+                        android:text="Раса"
+                        android:layout_width="185dp"
+                        android:layout_height="wrap_content" tools:layout_editor_absoluteY="383dp"
+                        tools:layout_editor_absoluteX="345dp" android:id="@+id/textViewRace"
+                        android:layout_marginBottom="45dp" android:layout_gravity="bottom"
+                        android:layout_marginTop="0dp"/>
+                <EditText
+                        android:layout_width="185dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapSentences"
+                        android:ems="10"
+                        tools:layout_editor_absoluteY="402dp" tools:layout_editor_absoluteX="224dp"
+                        android:id="@+id/editTextRace" android:layout_gravity="bottom" android:hint="Раса"/>
+                <TextView
+                        android:text="Архетип"
+                        android:layout_width="185dp"
+                        android:layout_height="wrap_content" android:id="@+id/textViewArchetype"
+                        android:layout_gravity="bottom|right" android:layout_marginBottom="45dp"/>
+                <EditText
+                        android:layout_width="185dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapSentences"
+                        android:ems="10"
+                        android:id="@+id/editTextArchetype" android:layout_gravity="bottom|right"
+                        android:hint="Архетип"/>
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" tools:layout_editor_absoluteY="402dp"
-                    tools:layout_editor_absoluteX="96dp" android:id="@+id/buttonExperience"/>
-            <TextView
-                    android:text="Раса"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" tools:layout_editor_absoluteY="383dp"
-                    tools:layout_editor_absoluteX="345dp" android:id="@+id/textViewRace"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="42dp"
-                    android:inputType="textPersonName"
-                    android:text="Раса"
-                    android:ems="10"
-                    tools:layout_editor_absoluteY="402dp" tools:layout_editor_absoluteX="224dp"
-                    android:id="@+id/editTextRace"/>
-            <TextView
-                    android:text="Уровень мастерства"
-                    android:layout_width="match_parent"
-                    android:layout_height="63dp" android:id="@+id/textViewMasteryLevel"
-                    tools:layout_editor_absoluteX="8dp" android:layout_marginTop="8dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textStyle="bold" android:textAlignment="viewStart"
-                    android:textColor="@android:color/background_light"/>
-            <CheckBox
-                    android:text="Вдохновение"
-                    android:layout_width="match_parent"
-                    android:layout_height="31dp" android:id="@+id/chackBoxInspiration"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/textViewMasteryLevel" android:layout_marginStart="252dp"
-                    android:textColor="@android:color/background_light" android:textStyle="bold"
-                    android:shadowColor="@android:color/background_light"/>
+                    android:layout_height="60dp">
+                <TextView
+                        android:text="LVL"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" tools:layout_editor_absoluteY="402dp"
+                        tools:layout_editor_absoluteX="0dp" android:id="@+id/textViewLVL" android:fontFamily="cursive"
+                        android:textSize="30sp" android:layout_gravity="right"/>
+                <Button
+                        android:onClick="onExpBoostButton"
+                        android:text="Опыт"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content" tools:layout_editor_absoluteY="402dp"
+                        tools:layout_editor_absoluteX="96dp" android:id="@+id/buttonExperience"
+                        android:layout_gravity="left" android:textSize="24sp"/>
+            </android.support.v7.widget.CardView>
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>
