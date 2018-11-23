@@ -42,7 +42,7 @@
     </ScrollView>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/buttonItemAddAlertCall"
         android:layout_width="74dp"
         android:layout_height="62dp"
         android:layout_marginBottom="64dp"
@@ -50,6 +50,7 @@
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:srcCompat="@android:drawable/ic_input_add"
+        android:onClick="onButtonItemAddClickCall"/>
 
 </android.support.constraint.ConstraintLayout>
