@@ -82,14 +82,16 @@ public class LayoutPage extends FragmentActivity {
         View promptsView = li.inflate(R.layout.alert_dialog_item_add, null);
         AlertDialog.Builder mDialogBuilder = new AlertDialog.Builder(this);
         mDialogBuilder.setView(promptsView);
-        final EditText editTextItemAdd = promptsView.findViewById(R.id.editTextItemAdd);
+        final EditText editTextItemName = promptsView.findViewById(R.id.editTextItemName);
         mDialogBuilder
                 .setCancelable(true)
                 .setPositiveButton("Добавить",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 //Вводим текст и отображаем в строке ввода на основном экране:
-                                editTextItemAdd.setText(editTextItemAdd.getText());
+                                editTextItemName.setText(editTextItemName.getText());
+
+
                             }
                         })
                 .setNegativeButton("Отмена",

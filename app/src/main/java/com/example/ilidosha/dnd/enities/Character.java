@@ -1,5 +1,6 @@
 package com.example.ilidosha.dnd.enities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Character {
@@ -9,8 +10,8 @@ public class Character {
     int level;
     int masteryLevel;
     Archetype archetype;
-    List<Item> items;
-    List<Spell> spells;
+    List<Item> items=new ArrayList<>();
+    List<Spell> spells=new ArrayList<>();
     int adult;
     Stats stats;
     Health health;
@@ -20,10 +21,10 @@ public class Character {
     int experience;
     boolean inspiration;
     Personality personality;
-    List<String> languages;
-    List<Skill> skills;
+    List<String> languages=new ArrayList<>();
+    List<Skill> skills=new ArrayList<>();
     Money money;
-    List<Weapon> weapons;
+    List<Weapon> weapons=new ArrayList<>();
 
     public String getName() {
         return name;

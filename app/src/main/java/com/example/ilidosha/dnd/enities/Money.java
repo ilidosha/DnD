@@ -1,6 +1,7 @@
 package com.example.ilidosha.dnd.enities;
 
 public class Money {
+
     int money;
     int cooperGold=100;
     int cooperPlatinum=1000;
@@ -30,6 +31,10 @@ public class Money {
 
     public int getMoney(){
         return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
     }
 
 }
