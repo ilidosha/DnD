@@ -15,13 +15,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 import com.example.ilidosha.dnd.R;
 import com.example.ilidosha.dnd.services.LevelUpService;
+import com.example.ilidosha.dnd.services.ValidatorServiceCharacter;
+import com.example.ilidosha.dnd.services.ValidatorServicePaladin;
 
 
 public class LayoutPage extends FragmentActivity {
     public static com.example.ilidosha.dnd.enities.Character character = new com.example.ilidosha.dnd.enities.Character();
     public static LevelUpService levelUpService = new LevelUpService();
+    public static ValidatorServiceCharacter validatorServiceCharacter = new ValidatorServicePaladin();//TODO: нужный валидатор сервис присваивать после проверки рассы
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -90,4 +94,31 @@ public class LayoutPage extends FragmentActivity {
         AlertDialog alert = builder.create();
         alert.show();
     }
+
+    public void onCreateCharacterButton(final View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true)
+                .setPositiveButton("Создать",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                com.example.ilidosha.dnd.enities.Character testCharacter =
+                                        new com.example.ilidosha.dnd.enities.Character();
+                                if(!validatorServiceCharacter.validationCreateCharacter(testCharacter)){
+                                    Toast.makeText(LayoutPage.this,R.string.validation_failed,Toast.LENGTH_LONG)
+                                    .show();
+                                }
+                                navigation.setSelectedItemId(R.id.navigation_character);
+                            }
+                        })
+                .setNegativeButton("Отмена",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+
 }

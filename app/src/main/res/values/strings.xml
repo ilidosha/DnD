@@ -6,4 +6,5 @@
     <string name="inventory">Инвентарь</string>
     <string name="dices">Кости</string>
     <string name="sanyapers">SanyaPers</string>
+    <string name="validation_failed">Вы что-то не заполнили/заполнили не верно</string>
 </resources>
