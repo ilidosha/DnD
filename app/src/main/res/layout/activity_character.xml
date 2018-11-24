@@ -228,15 +228,15 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" android:id="@+id/textView16"
                             android:layout_weight="1" android:gravity="right"/>
-                    <RadioButton
+                    <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" android:id="@+id/radioButton"
                             android:layout_weight="0"/>
-                    <RadioButton
+                    <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" android:id="@+id/radioButton2"
                             android:layout_weight="0"/>
-                    <RadioButton
+                    <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" android:id="@+id/radioButton3"
                             android:layout_weight="0"/>
@@ -254,15 +254,15 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" android:id="@+id/textView17"
                             android:layout_weight="1" android:gravity="right"/>
-                    <RadioButton
+                    <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" android:id="@+id/radioButton4"
                             android:layout_weight="0"/>
-                    <RadioButton
+                    <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" android:id="@+id/radioButton5"
                             android:layout_weight="0"/>
-                    <RadioButton
+                    <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" android:id="@+id/radioButton6"
                             android:layout_weight="0"/>
@@ -466,10 +466,27 @@
             </LinearLayout>
 
             <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:id="@+id/performance">
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                </LinearLayout>
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
                     android:id="@+id/navigationBarMenu"
                     android:layout_width="match_parent"
                     android:layout_height="42dp"
-                    android:orientation="horizontal"></LinearLayout>
+                    android:orientation="horizontal">
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>
