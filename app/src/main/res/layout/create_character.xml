@@ -88,7 +88,7 @@
                     android:ems="10"
                     android:hint="Телосложение"
                     android:inputType="textPersonName"/>
-
+                    <!--ХУЙ-->
             <EditText
                     android:id="@+id/editTextWisdom"
                     android:layout_width="match_parent"
