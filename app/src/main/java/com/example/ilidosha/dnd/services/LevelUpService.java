@@ -21,6 +21,22 @@ public class LevelUpService {
         }
         int number = parseIntOrZero(string);
         character.setExperience(character.getExperience()+number);
+        setLevelFromExperience(character.getExperience());
+    }
+
+    private void setLevelFromExperience(int experience){
+        if (experience>=14000){
+            character.setLevel(6);
+        } else if (experience>=6500){
+            character.setLevel(5);
+        } else if (experience>=2700){
+            character.setLevel(4);
+        } else if (experience>=900){
+            character.setLevel(3);
+        } else if (experience>=300){
+            character.setLevel(2);
+        } else character.setLevel(1);
+
     }
 
     private int parseIntOrZero(String string){

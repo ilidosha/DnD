@@ -16,7 +16,7 @@
 
     <EditText
             android:id="@+id/input_boost_lvl"
-            android:inputType="number"
+            android:inputType="numberSigned"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
         <requestFocus />

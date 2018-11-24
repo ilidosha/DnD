@@ -13,11 +13,11 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.*;
 
-import android.widget.Button;
-import android.widget.Toast;
 import com.example.ilidosha.dnd.R;
+import com.example.ilidosha.dnd.Utils.RandomUtils;
+import com.example.ilidosha.dnd.enities.Specialization;
 import com.example.ilidosha.dnd.services.LevelUpService;
 import com.example.ilidosha.dnd.services.ValidatorServiceCharacter;
 import com.example.ilidosha.dnd.services.ValidatorServicePaladin;
@@ -31,6 +31,7 @@ public class LayoutPage extends FragmentActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        setTheme(RandomUtils.getNextTheme());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.abstract_layout);
         navigation = findViewById(R.id.navigation);
@@ -120,6 +121,8 @@ public class LayoutPage extends FragmentActivity {
                                 //Вводим текст и отображаем в строке ввода на основном экране:
                                 levelUpService.boostExp(userInput);
                                 button.setText(String.valueOf(character.getExperience()));
+                                TextView textViewLVL = findViewById(R.id.textViewLVL);
+                                textViewLVL.setText("Уровень: "+String.valueOf(character.getLevel()));
                             }
                         })
                 .setNegativeButton("Отмена",
@@ -156,6 +159,33 @@ public class LayoutPage extends FragmentActivity {
                         });
         AlertDialog alert = builder.create();
         alert.show();
+    }
+
+    public void onChangeSpecializationButton(final View view){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Выбор класса");
+
+        final String [] specializations = new String[Specialization.values().length];
+
+        for (int i=0;i<Specialization.values().length;++i){
+            specializations[i]=Specialization.values()[i].getName();
+        }
+
+        builder.setItems(specializations, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                ((Button)findViewById(R.id.buttonSpecialization)).setText(specializations[item]);
+                Toast.makeText(getApplicationContext(),
+                        "Выбранный класс: " + specializations[item],
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.setCancelable(false);
+        builder.create().show();
+    }
+
+    public void onChangeTextColorButton(final View view){
+        recreate();
     }
 
 
