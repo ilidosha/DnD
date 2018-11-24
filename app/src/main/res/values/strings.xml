@@ -7,4 +7,5 @@
     <string name="dices">Кости</string>
     <string name="sanyapers">SanyaPers</string>
     <string name="validation_failed">Вы что-то не заполнили/заполнили не верно</string>
+    <string name="app_exit">Ты отсюда не выйдешь</string>
 </resources>

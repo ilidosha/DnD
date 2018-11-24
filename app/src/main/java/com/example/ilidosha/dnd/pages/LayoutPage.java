@@ -37,6 +37,11 @@ public class LayoutPage extends FragmentActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(this, R.string.app_exit, Toast.LENGTH_LONG).show();
+    }
+
     protected BottomNavigationView navigation;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -136,9 +141,9 @@ public class LayoutPage extends FragmentActivity {
                             public void onClick(DialogInterface dialog, int id) {
                                 com.example.ilidosha.dnd.enities.Character testCharacter =
                                         new com.example.ilidosha.dnd.enities.Character();
-                                if(!validatorServiceCharacter.validationCreateCharacter(testCharacter)){
-                                    Toast.makeText(LayoutPage.this,R.string.validation_failed,Toast.LENGTH_LONG)
-                                    .show();
+                                if (!validatorServiceCharacter.validationCreateCharacter(testCharacter)) {
+                                    Toast.makeText(LayoutPage.this, R.string.validation_failed, Toast.LENGTH_LONG)
+                                            .show();
                                 }
                                 navigation.setSelectedItemId(R.id.navigation_character);
                             }
