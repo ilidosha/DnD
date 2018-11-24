@@ -65,7 +65,7 @@ public class LayoutPage extends FragmentActivity {
         }
     };
 
-    void onExpBoostButton(final View view) {
+    public void onExpBoostButton(final View view) {
         LayoutInflater li = LayoutInflater.from(this);
         View dialog_window = li.inflate(R.layout.dialog_boost_exp, null);
         final EditText userInput = (EditText) dialog_window.findViewById(R.id.input_boost_lvl);
