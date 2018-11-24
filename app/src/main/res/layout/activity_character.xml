@@ -228,10 +228,15 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" android:id="@+id/textView16"
                             android:layout_weight="1" android:gravity="right"/>
+
                     <RadioButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" android:id="@+id/radioButton"
-                            android:layout_weight="0"/>
+                        android:id="@+id/radioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:checked="false"
+                        android:focusable="auto"
+                        android:clickable="true"/>
                     <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" android:id="@+id/radioButton2"
