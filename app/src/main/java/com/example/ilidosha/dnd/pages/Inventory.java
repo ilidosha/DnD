@@ -17,7 +17,6 @@ import android.widget.EditText;
 import com.example.ilidosha.dnd.R;
 
 public class Inventory extends Fragment {
-    FloatingActionButton buttonItemAdd;
     final Context context = null;
 
     @Nullable
@@ -25,7 +24,6 @@ public class Inventory extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_inventory, container,
                 false);
-        buttonItemAdd = view.findViewById(R.id.buttonItemAdd);
         return view;
     }
 }

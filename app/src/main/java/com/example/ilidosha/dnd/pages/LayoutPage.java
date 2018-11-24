@@ -71,15 +71,15 @@ public class LayoutPage extends FragmentActivity {
         }
     };
 
-    void onButtonItemAddClickCall(View v) {
+    public void onButtonItemAddClickCall(View v) {
         LayoutInflater li = LayoutInflater.from(this);
         View promptsView = li.inflate(R.layout.alert_dialog_item_add, null);
         AlertDialog.Builder mDialogBuilder = new AlertDialog.Builder(this);
         mDialogBuilder.setView(promptsView);
         final EditText editTextItemAdd = promptsView.findViewById(R.id.editTextItemAdd);
         mDialogBuilder
-                .setCancelable(false)
-                .setPositiveButton("OK",
+                .setCancelable(true)
+                .setPositiveButton("Добавить",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 //Вводим текст и отображаем в строке ввода на основном экране:
@@ -130,6 +130,7 @@ public class LayoutPage extends FragmentActivity {
     public void onCreateCharacterButton(final View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true)
+                .setTitle("Вы уверены, что всё правильно заполнено?")
                 .setPositiveButton("Создать",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
