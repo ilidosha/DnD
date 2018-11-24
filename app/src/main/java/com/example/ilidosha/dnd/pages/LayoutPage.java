@@ -13,14 +13,16 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+
+import android.widget.Button;
 import android.widget.Toast;
 import com.example.ilidosha.dnd.R;
 import com.example.ilidosha.dnd.services.LevelUpService;
 import com.example.ilidosha.dnd.services.ValidatorServiceCharacter;
 import com.example.ilidosha.dnd.services.ValidatorServicePaladin;
 
+import java.util.zip.Inflater;
 
 public class LayoutPage extends FragmentActivity {
     public static com.example.ilidosha.dnd.enities.Character character = new com.example.ilidosha.dnd.enities.Character();
@@ -68,6 +70,36 @@ public class LayoutPage extends FragmentActivity {
             return true;
         }
     };
+
+    void onButtonItemAddClickCall(View v) {
+        LayoutInflater li = LayoutInflater.from(this);
+        View promptsView = li.inflate(R.layout.alert_dialog_item_add, null);
+        AlertDialog.Builder mDialogBuilder = new AlertDialog.Builder(this);
+        mDialogBuilder.setView(promptsView);
+        final EditText editTextItemAdd = promptsView.findViewById(R.id.editTextItemAdd);
+        mDialogBuilder
+                .setCancelable(false)
+                .setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //Вводим текст и отображаем в строке ввода на основном экране:
+                                editTextItemAdd.setText(editTextItemAdd.getText());
+                            }
+                        })
+                .setNegativeButton("Отмена",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+        //Создаем AlertDialog:
+        AlertDialog alertDialog = mDialogBuilder.create();
+
+        //и отображаем его:
+        alertDialog.show();
+
+    }
 
     public void onExpBoostButton(final View view) {
         LayoutInflater li = LayoutInflater.from(this);
