@@ -184,6 +184,14 @@ public class LayoutPage extends FragmentActivity {
         builder.create().show();
     }
 
+    public void onOpenCreateCharacterButton(final View view){
+        Fragment fragment = new CreateCharacter();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.content_frame, fragment);
+        transaction.commit();
+    }
+
     public void onChangeTextColorButton(final View view){
         recreate();
     }
