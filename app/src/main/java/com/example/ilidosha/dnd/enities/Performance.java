@@ -13,7 +13,7 @@ public enum Performance {
     ANIMAL_HANDLING("Уход за животными"),
     INSIGHT("Проницательность"),
     MEDICINE("Медицина"),
-    PERCEPTION("Восприятие"),
+    PERCEPTION("Внимательность"),
     SURVIVAL("Выживание"),
     DECEPTION("Обман"),
     INTIMIDATION("Запугивание"),

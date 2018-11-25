@@ -13,7 +13,7 @@ public class Character {
     List<Item> items=new ArrayList<>();
     List<Spell> spells=new ArrayList<>();
     int adult;
-    Stats stats;
+    Stat stat;
     Health health;
     int armoryClass;
     int initiative;
@@ -98,12 +98,12 @@ public class Character {
         this.adult = adult;
     }
 
-    public Stats getStats() {
-        return stats;
+    public Stat getStat() {
+        return stat;
     }
 
-    public void setStats(Stats stats) {
-        this.stats = stats;
+    public void setStat(Stat stat) {
+        this.stat = stat;
     }
 
     public Health getHealth() {

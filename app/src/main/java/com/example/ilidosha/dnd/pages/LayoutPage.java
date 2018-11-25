@@ -18,6 +18,7 @@ import android.widget.*;
 import com.example.ilidosha.dnd.R;
 import com.example.ilidosha.dnd.Utils.RandomUtils;
 import com.example.ilidosha.dnd.enities.Archetype;
+import com.example.ilidosha.dnd.enities.Race;
 import com.example.ilidosha.dnd.enities.Specialization;
 import com.example.ilidosha.dnd.services.LevelUpService;
 import com.example.ilidosha.dnd.services.ValidatorServiceCharacter;
@@ -183,7 +184,7 @@ public class LayoutPage extends FragmentActivity {
                 buttonChooseArchetype.setVisibility(View.VISIBLE);
             }
         });
-        builder.setCancelable(false);
+        builder.setCancelable(true);
         builder.create().show();
     }
 
@@ -205,7 +206,28 @@ public class LayoutPage extends FragmentActivity {
                         Toast.LENGTH_SHORT).show();
             }
         });
-        builder.setCancelable(false);
+        builder.setCancelable(true);
+        builder.create().show();
+    }
+
+    public void onChangeRaceButton(final View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Выбор расы");
+
+        final String[] races = new String[Race.values().length];
+        for (int i = 0; i < Race.values().length; ++i) {
+            races[i] = Race.values()[i].getName();
+        }
+        builder.setItems(races, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                ((Button) findViewById(R.id.buttonChooseRace)).setText(races[item]);
+                Toast.makeText(getApplicationContext(),
+                        "Выбранная расса: " + races[item],
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.setCancelable(true);
         builder.create().show();
     }
 

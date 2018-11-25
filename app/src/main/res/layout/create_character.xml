@@ -18,6 +18,11 @@
                 android:inputType="textPersonName"/>
 
         <Button
+                android:text="Выберите расу"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/buttonChooseRace"
+                android:onClick="onChangeRaceButton"/>
+        <Button
                 android:id="@+id/buttonSpecialization"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -28,13 +33,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/buttonChooseArchetype"
                 android:visibility="gone" android:onClick="onChangeArchetypeButton"/>
-        <EditText
-                android:id="@+id/editTextRace"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Раса"
-                android:inputType="textPersonName"/>
 
         <LinearLayout
                 android:layout_width="match_parent"
@@ -96,11 +94,19 @@
                     android:inputType="textPersonName"/>
         </LinearLayout>
 
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/editText" android:hint="Класс доспеха"/>
+
         <Button
                 android:id="@+id/button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="onCreateCharacterButton"
                 android:text="Создать персонажа"/>
+
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
