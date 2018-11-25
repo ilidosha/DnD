@@ -42,7 +42,7 @@ public class RandomUtils {
         return result;
     }
 
-    private static int factStat(int stat) {
+    public static int factStat(int stat) {
         if (stat - 10 >= 0) {
             return (stat - 10) / 2;
         } else {

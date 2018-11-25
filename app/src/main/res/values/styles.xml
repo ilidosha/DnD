@@ -10,10 +10,22 @@
 
     <style name="blackText" parent="AppTheme">
         <item name="android:textColor">@android:color/background_dark</item>
+        <item name="android:editTextColor">@android:color/background_dark</item>
+        <item name="android:buttonStyle">@style/myWhiteStyle</item>
     </style>
 
     <style name="whiteText" parent="AppTheme">
         <item name="android:textColor">@android:color/background_light</item>
+        <item name="android:editTextColor">@android:color/background_light</item>
+        <item name="android:buttonStyle">@style/myBlackStyle</item>
+    </style>
+    
+    <style name="myBlackStyle" parent="@style/Widget.AppCompat.Button">
+        <item name="android:background">@android:color/background_dark</item>
+    </style>
+
+    <style name="myWhiteStyle" parent="@style/Widget.AppCompat.Button">\
+        <item name="android:background">@android:color/background_light</item>
     </style>
 
 </resources>

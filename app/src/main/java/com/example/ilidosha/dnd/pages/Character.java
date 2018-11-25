@@ -95,27 +95,27 @@ public class Character extends Fragment {
         for (Stat stat : character.getStats()) {
             switch (stat) {
                 case STRENGTH:
-                    strength.setText(String.valueOf(stat.getValue()));
+                    strength.setText(stat.getValue()+" ("+factStat(stat.getValue())+")");
                     break;
                 case AGILITY:
-                    agility.setText(String.valueOf(stat.getValue()));
+                    agility.setText(stat.getValue()+" ("+factStat(stat.getValue())+")");
                     break;
                 case INTELLIGENCE:
-                    intelligence.setText(String.valueOf(stat.getValue()));
+                    intelligence.setText(stat.getValue()+" ("+factStat(stat.getValue())+")");
                     break;
                 case WISDOM:
-                    wisdom.setText(String.valueOf(stat.getValue()));
+                    wisdom.setText(stat.getValue()+" ("+factStat(stat.getValue())+")");
                     break;
                 case BODY:
-                    body.setText(String.valueOf(stat.getValue()));
+                    body.setText(stat.getValue()+" ("+factStat(stat.getValue())+")");
                     break;
                 case CHARISMA:
-                    charisma.setText(String.valueOf(stat.getValue()));
+                    charisma.setText(stat.getValue()+" ("+factStat(stat.getValue())+")");
                     break;
             }
         }
         armoryClass.setText(String.valueOf(character.getArmoryClass()));
-        initiative.setText(String.valueOf(character.getInitiative()));
+        initiative.setText(String.valueOf(factStat(character.getStats().get(character.getStats().indexOf(Stat.AGILITY)).getValue())));
         speed.setText(String.valueOf(character.getSpeed()));
 
         athletics.setText(String.valueOf(calculatePerformance(ATHLETICS)));
