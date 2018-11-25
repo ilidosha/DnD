@@ -53,7 +53,7 @@ public class LayoutPage extends FragmentActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment fragment = null;
-            if (character==null){
+            if (character == null) {
                 onOpenCreateCharacterButton(null);
             } else {
                 switch (item.getItemId()) {
@@ -116,13 +116,91 @@ public class LayoutPage extends FragmentActivity {
 
     }
 
+    public void onChangeCurentHPButton(final View view) {
+        LayoutInflater li = LayoutInflater.from(this);
+        View dialog_window = li.inflate(R.layout.dialog_change_hp, null);
+        final EditText userInput = (EditText) dialog_window.findViewById(R.id.dialog_change_hp);
+        final Button button = (Button) view;
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true)
+                .setView(dialog_window)
+                .setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                character.getHealth().setCurrentHP(character.getHealth().getCurrentHP() + Integer.parseInt(userInput.getText().toString()));
+                                if (character.getHealth().getCurrentHP()>character.getHealth().getMaxHP()){
+                                    character.getHealth().setCurrentHP(character.getHealth().getMaxHP());
+                                }
+                                button.setText(String.valueOf(character.getHealth().getCurrentHP()));
+                            }
+                        })
+                .setNegativeButton("Отмена",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    public void onChangeMaxHPButton(final View view) {
+        LayoutInflater li = LayoutInflater.from(this);
+        View dialog_window = li.inflate(R.layout.dialog_change_hp, null);
+        final EditText userInput = (EditText) dialog_window.findViewById(R.id.dialog_change_hp);
+        final Button button = (Button) view;
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true)
+                .setView(dialog_window)
+                .setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                character.getHealth().setMaxHP(character.getHealth().getMaxHP() + Integer.parseInt(userInput.getText().toString()));
+                                button.setText(String.valueOf(character.getHealth().getMaxHP()));
+                            }
+                        })
+                .setNegativeButton("Отмена",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    public void onChangeTemporaryHPButton(final View view) {
+        LayoutInflater li = LayoutInflater.from(this);
+        View dialog_window = li.inflate(R.layout.dialog_change_hp, null);
+        final EditText userInput = (EditText) dialog_window.findViewById(R.id.dialog_change_hp);
+        final Button button = (Button) view;
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true)
+                .setView(dialog_window)
+                .setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                character.getHealth().setTemporaryHP(character.getHealth().getTemporaryHP() + Integer.parseInt(userInput.getText().toString()));
+                                button.setText(String.valueOf(character.getHealth().getTemporaryHP()));
+                            }
+                        })
+                .setNegativeButton("Отмена",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
     public void onExpBoostButton(final View view) {
         LayoutInflater li = LayoutInflater.from(this);
         View dialog_window = li.inflate(R.layout.dialog_boost_exp, null);
         final EditText userInput = (EditText) dialog_window.findViewById(R.id.input_boost_lvl);
         final Button button = (Button) view;
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(false)
+        builder.setCancelable(true)
                 .setView(dialog_window)
                 .setPositiveButton("OK",
                         new DialogInterface.OnClickListener() {

@@ -203,11 +203,11 @@
                     <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" android:id="@+id/buttonCurrentHP"
-                            android:layout_weight="1"/>
+                            android:layout_weight="1" android:onClick="onChangeCurentHPButton"/>
                     <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" android:id="@+id/buttonMaxHP"
-                            android:layout_weight="1"/>
+                            android:layout_weight="1" android:onClick="onChangeMaxHPButton"/>
                     <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" android:id="@+id/buttonDicesHP"
@@ -249,7 +249,7 @@
                     <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" android:id="@+id/buttonTemporaryHP"
-                            android:layout_weight="1"/>
+                            android:layout_weight="1" android:onClick="onChangeTemporaryHPButton"/>
                     <TextView
                             android:text="Неудачи"
                             android:layout_width="wrap_content"

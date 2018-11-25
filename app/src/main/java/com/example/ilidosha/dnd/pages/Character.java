@@ -85,10 +85,10 @@ public class Character extends Fragment {
 
         currentHP.setText(String.valueOf(character.getHealth().getCurrentHP()));
         maxHP.setText(String.valueOf(character.getHealth().getMaxHP()));
-        hpDices.setText(String.valueOf(character.getHealth().getHpDices()));
+        hpDices.setText("1к"+character.getSpecialization().getDicesHP());
         temporaryHP.setText(String.valueOf(character.getHealth().getTemporaryHP()));
 
-        LVL.setText("Уровень: "+String.valueOf(character.getLevel()));
+        LVL.setText("Уровень: "+character.getLevel());
         exp.setText(String.valueOf(character.getExperience()));
 
 

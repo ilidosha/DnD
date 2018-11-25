@@ -3,7 +3,6 @@ package com.example.ilidosha.dnd.enities;
 public class Health {
     int currentHP;
     int maxHP;
-    int hpDices;
     int temporaryHP;
 
     public int getMaxHP() {
@@ -12,14 +11,6 @@ public class Health {
 
     public void setMaxHP(int maxHP) {
         this.maxHP = maxHP;
-    }
-
-    public int getHpDices() {
-        return hpDices;
-    }
-
-    public void setHpDices(int hpDices) {
-        this.hpDices = hpDices;
     }
 
     public int getTemporaryHP() {
