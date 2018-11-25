@@ -11,8 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import com.example.ilidosha.dnd.R;
-import com.example.ilidosha.dnd.Utils.RandomUtils;
-import com.example.ilidosha.dnd.enities.Performance;
 import com.example.ilidosha.dnd.enities.Stat;
 
 import static com.example.ilidosha.dnd.Utils.RandomUtils.*;
@@ -73,7 +71,6 @@ public class Character extends Fragment {
         TextView intimidation = view.findViewById(R.id.textViewIntimidation);
         TextView performance = view.findViewById(R.id.textViewPerformance);
         TextView persuasion = view.findViewById(R.id.textViewPersuasion);
-
 
 
 

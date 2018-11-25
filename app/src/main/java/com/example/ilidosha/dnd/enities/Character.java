@@ -1,5 +1,7 @@
 package com.example.ilidosha.dnd.enities;
 
+import android.net.Uri;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -27,6 +29,15 @@ public class Character {
     List<Skill> skills=new ArrayList<>();
     Money money = new Money();
     List<Weapon> weapons=new ArrayList<>();
+    Uri photo;
+
+    public Uri getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(Uri photo) {
+        this.photo = photo;
+    }
 
     public String getName() {
         return name;

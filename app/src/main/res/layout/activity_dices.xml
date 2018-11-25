@@ -19,5 +19,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/button4"
                 android:onClick="onOpenCreateCharacterButton"/>
+        <Button
+                android:text="Подгрузить картинку (фон)"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/button2" android:onClick="onUploadImageButton"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

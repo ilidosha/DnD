@@ -1,14 +1,8 @@
 package com.example.ilidosha.dnd.Utils;
 
 import com.example.ilidosha.dnd.R;
-import com.example.ilidosha.dnd.enities.Character;
 import com.example.ilidosha.dnd.enities.Performance;
 import com.example.ilidosha.dnd.enities.Stat;
-import com.example.ilidosha.dnd.pages.LayoutPage;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import static com.example.ilidosha.dnd.pages.LayoutPage.character;
 

@@ -2,7 +2,11 @@ package com.example.ilidosha.dnd.pages;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
@@ -22,6 +26,7 @@ import com.example.ilidosha.dnd.enities.*;
 import com.example.ilidosha.dnd.services.LevelUpService;
 import com.example.ilidosha.dnd.services.ValidatorServiceCharacter;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -37,6 +42,7 @@ public class LayoutPage extends FragmentActivity {
         setTheme(RandomUtils.getNextTheme());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.abstract_layout);
+        trySetImage();
         navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
@@ -83,6 +89,14 @@ public class LayoutPage extends FragmentActivity {
             return true;
         }
     };
+
+    private void trySetImage(){
+        try {
+            ((ImageView)(findViewById(R.id.imageView)))
+                    .setImageBitmap(MediaStore.Images.Media.getBitmap(getContentResolver(), character.getPhoto()));
+        } catch (Exception ignored) {
+        }
+    }
 
     public void onButtonItemAddClickCall(View v) {
         LayoutInflater li = LayoutInflater.from(this);
@@ -367,6 +381,36 @@ public class LayoutPage extends FragmentActivity {
             }
         }
 
+    }
+
+    private static final int GALLERY_REQUEST = 1;
+
+    public void onUploadImageButton(final View view) {
+        Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+        photoPickerIntent.setType("image/*");
+        startActivityForResult(photoPickerIntent, GALLERY_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
+        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
+
+        Bitmap bitmap = null;
+        ImageView imageView = (ImageView) findViewById(R.id.imageView);
+
+        switch(requestCode) {
+            case GALLERY_REQUEST:
+                if(resultCode == RESULT_OK){
+                    Uri selectedImage = imageReturnedIntent.getData();
+                    try {
+                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
+                        character.setPhoto(selectedImage);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    imageView.setImageBitmap(bitmap);
+                }
+        }
     }
 
     private void fillCharacterInfoFromView(com.example.ilidosha.dnd.enities.Character character) {
