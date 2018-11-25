@@ -21,7 +21,6 @@ import com.example.ilidosha.dnd.Utils.RandomUtils;
 import com.example.ilidosha.dnd.enities.*;
 import com.example.ilidosha.dnd.services.LevelUpService;
 import com.example.ilidosha.dnd.services.ValidatorServiceCharacter;
-import com.example.ilidosha.dnd.services.ValidatorServicePaladin;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,9 +28,9 @@ import java.util.List;
 import java.util.zip.Inflater;
 
 public class LayoutPage extends FragmentActivity {
-    public static com.example.ilidosha.dnd.enities.Character character = new com.example.ilidosha.dnd.enities.Character();
+    public static com.example.ilidosha.dnd.enities.Character character;
     public static LevelUpService levelUpService = new LevelUpService();
-    public static ValidatorServiceCharacter validatorServiceCharacter = new ValidatorServicePaladin();//TODO: нужный валидатор сервис присваивать после проверки рассы
+    public static ValidatorServiceCharacter validatorServiceCharacter = new ValidatorServiceCharacter();//TODO: нужный валидатор сервис присваивать после проверки рассы
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,22 +53,26 @@ public class LayoutPage extends FragmentActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment fragment = null;
-            switch (item.getItemId()) {
-                case R.id.navigation_dices:
-                    fragment = new Dices();
-                    break;
-                case R.id.navigation_inventory:
-                    fragment = new Inventory();
-                    break;
-                case R.id.navigation_skills:
-                    fragment = new Skills();
-                    break;
-                case R.id.navigation_spells:
-                    fragment = new Spells();
-                    break;
-                case R.id.navigation_character:
-                    fragment = new Character();
-                    break;
+            if (character==null){
+                onOpenCreateCharacterButton(null);
+            } else {
+                switch (item.getItemId()) {
+                    case R.id.navigation_dices:
+                        fragment = new Dices();
+                        break;
+                    case R.id.navigation_inventory:
+                        fragment = new Inventory();
+                        break;
+                    case R.id.navigation_skills:
+                        fragment = new Skills();
+                        break;
+                    case R.id.navigation_spells:
+                        fragment = new Spells();
+                        break;
+                    case R.id.navigation_character:
+                        fragment = new Character();
+                        break;
+                }
             }
             if (fragment == null)
                 return false;
@@ -155,8 +158,9 @@ public class LayoutPage extends FragmentActivity {
                                             .show();
                                     return;
                                 }
-                                fillCharacterInfoFromView();
-                                setBonusStats();
+                                character = new com.example.ilidosha.dnd.enities.Character();
+                                fillCharacterInfoFromView(character);
+                                character.getRace().applyClassBonusOnCharacter(character);
                                 navigation.setVisibility(View.VISIBLE);
                                 navigation.setSelectedItemId(R.id.navigation_character);
                             }
@@ -287,7 +291,7 @@ public class LayoutPage extends FragmentActivity {
 
     }
 
-    private void fillCharacterInfoFromView() {
+    private void fillCharacterInfoFromView(com.example.ilidosha.dnd.enities.Character character) {
 
         EditText name = findViewById(R.id.editTextName);
 
