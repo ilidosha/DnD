@@ -5,21 +5,50 @@ import android.content.res.Resources;
 public enum Archetype {
     PALADIN_DEVOTION("Клятва преданности"),
     PALADIN_ANCIENTS("Клятва древних"),
-    PALADIN_VENGEANCE("Клятва отмщения");
+    PALADIN_VENGEANCE("Клятва отмщения"),
 
-    public String getFancyName() {
-        return fancyName;
+    BARD_VALOR("Коллегия доблести"),
+    BARD_LORE("Коллегия знаний"),
+    BARD_ANCIENTS("Коллегия древних"),
+
+    CLERIC_TRICKERY("Домен обмана"),
+    CLERIC_STORM("Домен бури"),
+    CLERIC_WAR("Домен войны"),
+    CLERIC_KNOWLEDGE("Домен знания"),
+    CLERIC_NATURE("Домен природы"),
+    CLERIC_LIGHT("Домен света"),
+    CLERIC_LIFE("Домен жизни"),
+
+    WARLOCK_ARCHYFAIRY("Архифея"),
+    WARLOCK_FIEND("Исчадие"),
+    WARLOCK_GREAT_ANCIENT("Великий древний"),
+
+    ROGUE_THIEF("Вор"),
+    ROGUE_KILLER("Убийца"),
+    ROGUE_MYSTICAL_TRICKSTER("Мистический ловкач"),
+
+    RANGER_HUNTER("Охотник"),
+    RANGER_BEASTMASTER("Повелитель зверей"),
+    RANGER_FLORAMASTER("Повелитель растений"),
+
+    SORCERER_DRAGON_BLOOD("Наследие драконьей крови"),
+    SORCERER_WILD_MAGIC("Дикая магия"),
+    SORCERER_DECAY("Отмеченный порчей");
+
+
+    public String getName() {
+        return name;
     }
 
-    String fancyName;
+    String name;
 
     Archetype(String string){
-        this.fancyName=string;
+        this.name =string;
     }
 
     public static Archetype getArchetypeFromString(String string){
         for (Archetype archetype: Archetype.values()){
-            if (archetype.getFancyName().equals(string)){
+            if (archetype.getName().equals(string)){
                 return archetype;
             }
         }

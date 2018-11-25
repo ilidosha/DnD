@@ -23,14 +23,11 @@
                 android:layout_height="wrap_content"
                 android:ems="10" android:text="Выберите класс" android:onClick="onChangeSpecializationButton"/>
 
-        <EditText
-                android:id="@+id/editTextArchetype"
+        <Button
+                android:text="Выберите архетип"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Архетип"
-                android:inputType="textPersonName"/>
-
+                android:layout_height="wrap_content" android:id="@+id/buttonChooseArchetype"
+                android:visibility="gone" android:onClick="onChangeArchetypeButton"/>
         <EditText
                 android:id="@+id/editTextRace"
                 android:layout_width="match_parent"

@@ -17,6 +17,7 @@ import android.widget.*;
 
 import com.example.ilidosha.dnd.R;
 import com.example.ilidosha.dnd.Utils.RandomUtils;
+import com.example.ilidosha.dnd.enities.Archetype;
 import com.example.ilidosha.dnd.enities.Specialization;
 import com.example.ilidosha.dnd.services.LevelUpService;
 import com.example.ilidosha.dnd.services.ValidatorServiceCharacter;
@@ -124,7 +125,7 @@ public class LayoutPage extends FragmentActivity {
                                 levelUpService.boostExp(userInput);
                                 button.setText(String.valueOf(character.getExperience()));
                                 TextView textViewLVL = findViewById(R.id.textViewLVL);
-                                textViewLVL.setText("Уровень: "+String.valueOf(character.getLevel()));
+                                textViewLVL.setText("Уровень: " + String.valueOf(character.getLevel()));
                             }
                         })
                 .setNegativeButton("Отмена",
@@ -163,22 +164,44 @@ public class LayoutPage extends FragmentActivity {
         alert.show();
     }
 
-    public void onChangeSpecializationButton(final View view){
+    public void onChangeSpecializationButton(final View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Выбор класса");
-
-        final String [] specializations = new String[Specialization.values().length];
-
-        for (int i=0;i<Specialization.values().length;++i){
-            specializations[i]=Specialization.values()[i].getName();
+        final String[] specializations = new String[Specialization.values().length];
+        for (int i = 0; i < Specialization.values().length; ++i) {
+            specializations[i] = Specialization.values()[i].getName();
         }
-
         builder.setItems(specializations, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int item) {
-                ((Button)findViewById(R.id.buttonSpecialization)).setText(specializations[item]);
+                ((Button) findViewById(R.id.buttonSpecialization)).setText(specializations[item]);
                 Toast.makeText(getApplicationContext(),
                         "Выбранный класс: " + specializations[item],
+                        Toast.LENGTH_SHORT).show();
+                Button buttonChooseArchetype = findViewById(R.id.buttonChooseArchetype);
+                buttonChooseArchetype.setText("Выберите архетип");
+                buttonChooseArchetype.setVisibility(View.VISIBLE);
+            }
+        });
+        builder.setCancelable(false);
+        builder.create().show();
+    }
+
+    public void onChangeArchetypeButton(final View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Выбор архетипа");
+        String specialization = ((Button) findViewById(R.id.buttonSpecialization)).getText().toString();
+        Archetype[] enumArchetypes = Specialization.getSpecializationFromString(specialization).getArchetypes();
+        final String[] archetypes = new String[enumArchetypes.length];
+        for (int i = 0; i < enumArchetypes.length; ++i) {
+            archetypes[i] = enumArchetypes[i].getName();
+        }
+        builder.setItems(archetypes, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                ((Button) findViewById(R.id.buttonChooseArchetype)).setText(archetypes[item]);
+                Toast.makeText(getApplicationContext(),
+                        "Выбранный класс: " + archetypes[item],
                         Toast.LENGTH_SHORT).show();
             }
         });
@@ -186,7 +209,7 @@ public class LayoutPage extends FragmentActivity {
         builder.create().show();
     }
 
-    public void onOpenCreateCharacterButton(final View view){
+    public void onOpenCreateCharacterButton(final View view) {
         Fragment fragment = new CreateCharacter();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -194,7 +217,7 @@ public class LayoutPage extends FragmentActivity {
         transaction.commit();
     }
 
-    public void onChangeTextColorButton(final View view){
+    public void onChangeTextColorButton(final View view) {
         recreate();
     }
 

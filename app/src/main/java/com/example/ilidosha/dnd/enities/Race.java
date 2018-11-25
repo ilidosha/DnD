@@ -5,5 +5,5 @@ public enum Race {
     ELF,
     HALFLING,
     GNOME,
-    HUMAN
+    HUMAN;
 }
