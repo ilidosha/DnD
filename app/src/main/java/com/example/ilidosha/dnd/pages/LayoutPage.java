@@ -16,14 +16,17 @@ import android.view.View;
 import android.widget.*;
 
 import com.example.ilidosha.dnd.R;
+import com.example.ilidosha.dnd.Utils.Filler;
 import com.example.ilidosha.dnd.Utils.RandomUtils;
 import com.example.ilidosha.dnd.enities.Archetype;
 import com.example.ilidosha.dnd.enities.Race;
 import com.example.ilidosha.dnd.enities.Specialization;
+import com.example.ilidosha.dnd.enities.Stat;
 import com.example.ilidosha.dnd.services.LevelUpService;
 import com.example.ilidosha.dnd.services.ValidatorServiceCharacter;
 import com.example.ilidosha.dnd.services.ValidatorServicePaladin;
 
+import java.util.Arrays;
 import java.util.zip.Inflater;
 
 public class LayoutPage extends FragmentActivity {
@@ -152,6 +155,7 @@ public class LayoutPage extends FragmentActivity {
                                     Toast.makeText(LayoutPage.this, R.string.validation_failed, Toast.LENGTH_LONG)
                                             .show();
                                 }
+                                fillCharacterInfoFromView();
                                 navigation.setSelectedItemId(R.id.navigation_character);
                             }
                         })
@@ -243,5 +247,45 @@ public class LayoutPage extends FragmentActivity {
         recreate();
     }
 
+    private void fillCharacterInfoFromView(){
+
+        EditText name = findViewById(R.id.editTextName);
+
+        Button race = findViewById(R.id.buttonChooseRace);
+        Button archetype = findViewById(R.id.buttonChooseArchetype);
+        Button specialization = findViewById(R.id.buttonSpecialization);
+
+        EditText intelligence = findViewById(R.id.editTextIntelligence);
+        EditText agility = findViewById(R.id.editTextAgility);
+        EditText strength = findViewById(R.id.editTextStrength);
+        EditText charisma = findViewById(R.id.editTextCharisma);
+        EditText body = findViewById(R.id.editTextBody);
+        EditText wisdom = findViewById(R.id.editTextWisdom);
+
+        EditText armoryClass = findViewById(R.id.editTextArmoryClass);
+
+        character.setName(name.getText().toString());
+
+        character.setRace(Race.getRaceFromString(race.getText().toString()));
+        character.setArchetype(Archetype.getArchetypeFromString(archetype.getText().toString()));
+        character.setSpecialization(Specialization.getSpecializationFromString(specialization.getText().toString()));
+
+        Stat.INTELLIGENCE.setValue(Integer.parseInt(intelligence.getText().toString()));
+        Stat.AGILITY.setValue(Integer.parseInt(agility.getText().toString()));
+        Stat.STRENGTH.setValue(Integer.parseInt(strength.getText().toString()));
+        Stat.CHARISMA.setValue(Integer.parseInt(charisma.getText().toString()));
+        Stat.BODY.setValue(Integer.parseInt(body.getText().toString()));
+        Stat.WISDOM.setValue(Integer.parseInt(wisdom.getText().toString()));
+
+        character.setStats(Arrays.asList(
+                Stat.INTELLIGENCE,
+                Stat.AGILITY,
+                Stat.STRENGTH,
+                Stat.CHARISMA,
+                Stat.BODY,
+                Stat.WISDOM));
+
+        character.setArmoryClass(Integer.parseInt(armoryClass.getText().toString()));
+    }
 
 }

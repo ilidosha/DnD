@@ -1,6 +1,7 @@
 package com.example.ilidosha.dnd.enities;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Character {
@@ -12,18 +13,19 @@ public class Character {
     Archetype archetype;
     List<Item> items=new ArrayList<>();
     List<Spell> spells=new ArrayList<>();
+    List<Performance> performances = new ArrayList<>();
     int adult;
-    Stat stat;
-    Health health;
+    List<Stat> stats = Arrays.asList(Stat.CHARISMA,Stat.WISDOM,Stat.BODY,Stat.INTELLIGENCE,Stat.AGILITY,Stat.STRENGTH);
+    Health health = new Health();
     int armoryClass;
     int initiative;
     int speed;
     int experience;
     boolean inspiration;
-    Personality personality;
+    Personality personality = new Personality();
     List<String> languages=new ArrayList<>();
     List<Skill> skills=new ArrayList<>();
-    Money money;
+    Money money = new Money();
     List<Weapon> weapons=new ArrayList<>();
 
     public String getName() {
@@ -36,6 +38,14 @@ public class Character {
 
     public Race getRace() {
         return race;
+    }
+
+    public List<Performance> getPerformances() {
+        return performances;
+    }
+
+    public void setPerformances(List<Performance> performances) {
+        this.performances = performances;
     }
 
     public void setRace(Race race) {
@@ -96,14 +106,6 @@ public class Character {
 
     public void setAdult(int adult) {
         this.adult = adult;
-    }
-
-    public Stat getStat() {
-        return stat;
-    }
-
-    public void setStat(Stat stat) {
-        this.stat = stat;
     }
 
     public Health getHealth() {
@@ -192,5 +194,13 @@ public class Character {
 
     public void setWeapons(List<Weapon> weapons) {
         this.weapons = weapons;
+    }
+
+    public List<Stat> getStats() {
+        return stats;
+    }
+
+    public void setStats(List<Stat> stats) {
+        this.stats = stats;
     }
 }

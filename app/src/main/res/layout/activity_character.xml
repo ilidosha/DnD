@@ -11,7 +11,7 @@
             android:id="@+id/scrollView2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteX="32dp"
             tools:layout_editor_absoluteY="0dp">
 
         <LinearLayout
@@ -93,7 +93,7 @@
                             android:hint="Имя"
                             android:inputType="textCapSentences"
                             android:singleLine="true"
-                            android:textAlignment="viewStart"/>
+                            android:textAlignment="viewStart" android:enabled="false"/>
 
                     <EditText
                             android:id="@+id/editTextSpecialization"
@@ -103,7 +103,7 @@
                             android:ems="10"
                             android:gravity="right"
                             android:hint="Класс"
-                            android:inputType="textCapSentences"/>
+                            android:inputType="textCapSentences" android:enabled="false"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -144,7 +144,7 @@
                             android:layout_weight="1"
                             android:ems="10"
                             android:hint="Раса"
-                            android:inputType="textCapSentences"/>
+                            android:inputType="textCapSentences" android:enabled="false"/>
 
                     <EditText
                             android:id="@+id/editTextArchetype"
@@ -154,7 +154,7 @@
                             android:ems="10"
                             android:gravity="right"
                             android:hint="Архетип"
-                            android:inputType="textCapSentences"/>
+                            android:inputType="textCapSentences" android:enabled="false"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -248,7 +248,8 @@
                         android:layout_height="match_parent">
                     <Button
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" android:id="@+id/button12" android:layout_weight="1"/>
+                            android:layout_height="wrap_content" android:id="@+id/buttonTemporaryHP"
+                            android:layout_weight="1"/>
                     <TextView
                             android:text="Неудачи"
                             android:layout_width="wrap_content"
@@ -314,21 +315,21 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Сила"/>
+                            android:text="Сила" android:enabled="false"/>
 
                     <TextView
                             android:id="@+id/textView2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Ловкость"/>
+                            android:text="Ловкость" android:enabled="false"/>
 
                     <TextView
                             android:id="@+id/textView3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Интеллект"/>
+                            android:text="Интеллект" android:enabled="false"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -342,7 +343,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:ems="10"
-                            android:inputType="number"/>
+                            android:inputType="number" android:enabled="false"/>
 
                     <EditText
                             android:id="@+id/editTextAgility"
@@ -371,21 +372,21 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Мудрость"/>
+                            android:text="Мудрость" android:enabled="false"/>
 
                     <TextView
                             android:id="@+id/textView5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Телосложение"/>
+                            android:text="Телосложение" android:enabled="false"/>
 
                     <TextView
                             android:id="@+id/textView6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Харизма"/>
+                            android:text="Харизма" android:enabled="false"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -471,20 +472,290 @@
                     android:layout_height="match_parent" android:id="@+id/performance">
                 <LinearLayout
                         android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" android:layout_weight="1">
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        <TextView
+                                android:text="Акробатика (лов)"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textView30"
+                                android:layout_weight="1"/>
+                        <TextView
+                                android:text="TextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textViewAcrobatics"
+                                android:layout_weight="0"/>
+                    </LinearLayout>
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        <TextView
+                                android:text="Анализ (инт)"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textView31"
+                                android:layout_weight="1"/>
+                        <TextView
+                                android:text="TextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textViewInvestigation"
+                                android:layout_weight="0"/>
+                    </LinearLayout>
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        <TextView
+                                android:text="Атлетика (сил)"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textView33"
+                                android:layout_weight="1"/>
+                        <TextView
+                                android:text="TextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textViewAthletics"
+                                android:layout_weight="0"/>
+                    </LinearLayout>
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        <TextView
+                                android:text="Внимательность (мдр)"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textView35"
+                                android:layout_weight="1"/>
+                        <TextView
+                                android:text="TextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textViewPerception"
+                                android:layout_weight="0"/>
+                    </LinearLayout>
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        <TextView
+                                android:text="Выживание (мдр)"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textView37"
+                                android:layout_weight="1"/>
+                        <TextView
+                                android:text="TextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textViewSurvival"
+                                android:layout_weight="0"/>
+                    </LinearLayout>
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        <TextView
+                                android:text="Выступление (хар)"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textView39"
+                                android:layout_weight="1"/>
+                        <TextView
+                                android:text="TextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textViewPerformance"
+                                android:layout_weight="0"/>
+                    </LinearLayout>
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        <TextView
+                                android:text="Запугивание (хар)"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textView41"
+                                android:layout_weight="1"/>
+                        <TextView
+                                android:text="TextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textViewIntimidation"
+                                android:layout_weight="0"/>
+                    </LinearLayout>
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        <TextView
+                                android:text="История (инт)"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textView43"
+                                android:layout_weight="1"/>
+                        <TextView
+                                android:text="TextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textViewHistory"
+                                android:layout_weight="0"/>
+                    </LinearLayout>
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        <TextView
+                                android:text="Ловкость рук (лов)"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textView45"
+                                android:layout_weight="1"/>
+                        <TextView
+                                android:text="TextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textViewSleightOfHand"
+                                android:layout_weight="0"/>
+                    </LinearLayout>
                 </LinearLayout>
                 <LinearLayout
                         android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" android:layout_weight="1">
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        <TextView
+                                android:text="Магия (инт)"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textView30"
+                                android:layout_weight="1"/>
+                        <TextView
+                                android:text="TextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textViewArcana"
+                                android:layout_weight="0"/>
+                    </LinearLayout>
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        <TextView
+                                android:text="Медицина (мдр)"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textView31"
+                                android:layout_weight="1"/>
+                        <TextView
+                                android:text="TextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textViewMedicine"
+                                android:layout_weight="0"/>
+                    </LinearLayout>
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        <TextView
+                                android:text="Обман (хар)"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textView33"
+                                android:layout_weight="1"/>
+                        <TextView
+                                android:text="TextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textViewDeception"
+                                android:layout_weight="0"/>
+                    </LinearLayout>
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        <TextView
+                                android:text="Природа (инт)"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textView35"
+                                android:layout_weight="1"/>
+                        <TextView
+                                android:text="TextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textViewNature"
+                                android:layout_weight="0"/>
+                    </LinearLayout>
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        <TextView
+                                android:text="Проницательность (мдр)"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textView37"
+                                android:layout_weight="1"/>
+                        <TextView
+                                android:text="TextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textViewInsight"
+                                android:layout_weight="0"/>
+                    </LinearLayout>
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        <TextView
+                                android:text="Религия (инт)"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textView39"
+                                android:layout_weight="1"/>
+                        <TextView
+                                android:text="TextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textViewReligion"
+                                android:layout_weight="0"/>
+                    </LinearLayout>
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        <TextView
+                                android:text="Скрытность (лов)"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textView41"
+                                android:layout_weight="1"/>
+                        <TextView
+                                android:text="TextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textViewStealth"
+                                android:layout_weight="0"/>
+                    </LinearLayout>
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        <TextView
+                                android:text="Убеждение (хар)"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textView43"
+                                android:layout_weight="1"/>
+                        <TextView
+                                android:text="TextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textViewPersuasion"
+                                android:layout_weight="0"/>
+                    </LinearLayout>
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        <TextView
+                                android:text="Уход за животными (мдр)"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textView45"
+                                android:layout_weight="1"/>
+                        <TextView
+                                android:text="TextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textViewAnimalHandling"
+                                android:layout_weight="0"/>
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                     android:id="@+id/navigationBarMenu"
                     android:layout_width="match_parent"
-                    android:layout_height="42dp"
+                    android:layout_height="52dp"
                     android:orientation="horizontal">
             </LinearLayout>
         </LinearLayout>

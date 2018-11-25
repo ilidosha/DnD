@@ -15,7 +15,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Имя"
-                android:inputType="textPersonName"/>
+                android:inputType="textCapSentences"/>
 
         <Button
                 android:text="Выберите расу"
@@ -46,7 +46,7 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:hint="Интеллект"
-                    android:inputType="textPersonName"/>
+                    android:inputType="number"/>
 
             <EditText
                     android:id="@+id/editTextAgility"
@@ -55,7 +55,7 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:hint="Ловкость"
-                    android:inputType="textPersonName"/>
+                    android:inputType="number"/>
 
             <EditText
                     android:id="@+id/editTextStrength"
@@ -64,7 +64,7 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:hint="Сила"
-                    android:inputType="textPersonName"/>
+                    android:inputType="number"/>
 
             <EditText
                     android:id="@+id/editTextCharisma"
@@ -73,7 +73,7 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:hint="Харизма"
-                    android:inputType="textPersonName"/>
+                    android:inputType="number"/>
 
             <EditText
                     android:id="@+id/editTextBody"
@@ -82,8 +82,8 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:hint="Телосложение"
-                    android:inputType="textPersonName"/>
-                    <!--ХУЙ-->
+                    android:inputType="number"/>
+            <!--ХУЙ-->
             <EditText
                     android:id="@+id/editTextWisdom"
                     android:layout_width="match_parent"
@@ -91,15 +91,16 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:hint="Мудрость"
-                    android:inputType="textPersonName"/>
+                    android:inputType="number"/>
         </LinearLayout>
 
         <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
+                android:inputType="number"
                 android:ems="10"
-                android:id="@+id/editText" android:hint="Класс доспеха"/>
+                android:id="@+id/editTextArmoryClass"
+                android:hint="Класс доспеха"/>
 
         <Button
                 android:id="@+id/button"
