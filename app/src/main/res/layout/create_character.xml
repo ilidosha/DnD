@@ -35,6 +35,96 @@
                 android:visibility="gone" android:onClick="onChangeArchetypeButton"/>
 
         <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                    android:text="TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textViewChooseNumber"
+                    android:visibility="gone"/>
+            <CheckBox
+                    android:text="Атлетика"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/checkBoxAthletics" android:visibility="gone"/>
+            <CheckBox
+                    android:text="Акробатика"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/checkBoxAcrobatics"
+                    android:visibility="gone"/>
+            <CheckBox
+                    android:text="Ловкость рук"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/checkBoxSleightOfHand"
+                    android:visibility="gone"/>
+            <CheckBox
+                    android:text="Скрытность"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/checkBoxStealth" android:visibility="gone"/>
+            <CheckBox
+                    android:text="Магия"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/checkBoxArcana" android:visibility="gone"/>
+            <CheckBox
+                    android:text="История"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/checkBoxHistory" android:visibility="gone"/>
+            <CheckBox
+                    android:text="Анализ"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/checkBoxInvestigation"
+                    android:visibility="gone"/>
+            <CheckBox
+                    android:text="Природа"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/checkBoxNature" android:visibility="gone"/>
+            <CheckBox
+                    android:text="Религия"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/checkBoxReligion" android:visibility="gone"/>
+            <CheckBox
+                    android:text="Уход за животными"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/checkBoxAnimalHandling"
+                    android:visibility="gone"/>
+            <CheckBox
+                    android:text="Проницательность"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/checkBoxInsight" android:visibility="gone"/>
+            <CheckBox
+                    android:text="Медицина"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/checkBoxMedicine" android:visibility="gone"/>
+            <CheckBox
+                    android:text="Внимательность"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/checkBoxPerception"
+                    android:visibility="gone"/>
+            <CheckBox
+                    android:text="Выживание"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/checkBoxSurvival" android:visibility="gone"/>
+            <CheckBox
+                    android:text="Обман"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/checkBoxDeception" android:visibility="gone"/>
+            <CheckBox
+                    android:text="Запугивание"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/checkBoxIntimidation"
+                    android:visibility="gone"/>
+            <CheckBox
+                    android:text="Выступление"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/checkBoxPerformance"
+                    android:visibility="gone"/>
+            <CheckBox
+                    android:text="Убеждение"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/checkBoxPersuasion"
+                    android:visibility="gone"/>
+        </LinearLayout>
+        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">

@@ -27,25 +27,26 @@ public class RandomUtils {
         }
     }
 
-    public static int calculatePerformance(Performance performance){
-        int result=0;
-        for (Stat stat:character.getStats()) {
-            if (stat==performance.getStat()){
-                result+=stat.getValue();
+    public static int calculatePerformance(Performance performance) {
+        int result = 0;
+        for (Stat stat : character.getStats()) {
+            if (stat == performance.getStat()) {
+                result += stat.getValue();
                 break;
             }
         }
+        result = factStat(result);
         if (character.getPerformances().contains(performance)) {
-            result+=character.getMasteryLevel();
+            result += character.getMasteryLevel();
         }
-        return factStat(result);
+        return result;
     }
 
-    private static int factStat(int stat){
-        if (stat-10>0) {
-            return Math.abs((stat-10)%2);
+    private static int factStat(int stat) {
+        if (stat - 10 >= 0) {
+            return (stat - 10) / 2;
         } else {
-            return -Math.abs((stat-10)%2);
+            return (stat - 11) / 2;
         }
     }
 }

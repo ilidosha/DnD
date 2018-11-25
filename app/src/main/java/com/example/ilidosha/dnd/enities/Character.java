@@ -9,7 +9,7 @@ public class Character {
     Race race;
     Specialization specialization;
     int level;
-    int masteryLevel;
+    int masteryLevel = 2;
     Archetype archetype;
     List<Item> items=new ArrayList<>();
     List<Spell> spells=new ArrayList<>();

@@ -473,7 +473,7 @@
                 <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent" android:layout_weight="1">
+                        android:layout_height="match_parent" android:layout_weight="1" android:padding="10dp">
                     <LinearLayout
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
@@ -482,7 +482,7 @@
                                 android:text="Акробатика (лов)"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" android:id="@+id/textView30"
-                                android:layout_weight="1"/>
+                                android:layout_weight="1" android:singleLine="true"/>
                         <TextView
                                 android:text="TextView"
                                 android:layout_width="wrap_content"
@@ -497,7 +497,7 @@
                                 android:text="Анализ (инт)"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" android:id="@+id/textView31"
-                                android:layout_weight="1"/>
+                                android:layout_weight="1" android:singleLine="true"/>
                         <TextView
                                 android:text="TextView"
                                 android:layout_width="wrap_content"
@@ -512,7 +512,7 @@
                                 android:text="Атлетика (сил)"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" android:id="@+id/textView33"
-                                android:layout_weight="1"/>
+                                android:layout_weight="1" android:singleLine="true"/>
                         <TextView
                                 android:text="TextView"
                                 android:layout_width="wrap_content"
@@ -527,7 +527,7 @@
                                 android:text="Внимательность (мдр)"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" android:id="@+id/textView35"
-                                android:layout_weight="1"/>
+                                android:layout_weight="1" android:singleLine="true"/>
                         <TextView
                                 android:text="TextView"
                                 android:layout_width="wrap_content"
@@ -542,7 +542,7 @@
                                 android:text="Выживание (мдр)"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" android:id="@+id/textView37"
-                                android:layout_weight="1"/>
+                                android:layout_weight="1" android:singleLine="true"/>
                         <TextView
                                 android:text="TextView"
                                 android:layout_width="wrap_content"
@@ -557,7 +557,7 @@
                                 android:text="Выступление (хар)"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" android:id="@+id/textView39"
-                                android:layout_weight="1"/>
+                                android:layout_weight="1" android:singleLine="true"/>
                         <TextView
                                 android:text="TextView"
                                 android:layout_width="wrap_content"
@@ -572,7 +572,7 @@
                                 android:text="Запугивание (хар)"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" android:id="@+id/textView41"
-                                android:layout_weight="1"/>
+                                android:layout_weight="1" android:singleLine="true"/>
                         <TextView
                                 android:text="TextView"
                                 android:layout_width="wrap_content"
@@ -587,7 +587,7 @@
                                 android:text="История (инт)"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" android:id="@+id/textView43"
-                                android:layout_weight="1"/>
+                                android:layout_weight="1" android:singleLine="true"/>
                         <TextView
                                 android:text="TextView"
                                 android:layout_width="wrap_content"
@@ -602,7 +602,7 @@
                                 android:text="Ловкость рук (лов)"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" android:id="@+id/textView45"
-                                android:layout_weight="1"/>
+                                android:layout_weight="1" android:singleLine="true"/>
                         <TextView
                                 android:text="TextView"
                                 android:layout_width="wrap_content"
@@ -613,7 +613,7 @@
                 <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent" android:layout_weight="1">
+                        android:layout_height="match_parent" android:layout_weight="1" android:padding="10dp">
                     <LinearLayout
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
@@ -622,7 +622,7 @@
                                 android:text="Магия (инт)"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" android:id="@+id/textView30"
-                                android:layout_weight="1"/>
+                                android:layout_weight="1" android:singleLine="true"/>
                         <TextView
                                 android:text="TextView"
                                 android:layout_width="wrap_content"
@@ -637,7 +637,7 @@
                                 android:text="Медицина (мдр)"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" android:id="@+id/textView31"
-                                android:layout_weight="1"/>
+                                android:layout_weight="1" android:singleLine="true"/>
                         <TextView
                                 android:text="TextView"
                                 android:layout_width="wrap_content"
@@ -652,7 +652,7 @@
                                 android:text="Обман (хар)"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" android:id="@+id/textView33"
-                                android:layout_weight="1"/>
+                                android:layout_weight="1" android:singleLine="true"/>
                         <TextView
                                 android:text="TextView"
                                 android:layout_width="wrap_content"
@@ -667,7 +667,7 @@
                                 android:text="Природа (инт)"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" android:id="@+id/textView35"
-                                android:layout_weight="1"/>
+                                android:layout_weight="1" android:singleLine="true"/>
                         <TextView
                                 android:text="TextView"
                                 android:layout_width="wrap_content"
@@ -682,7 +682,7 @@
                                 android:text="Проницательность (мдр)"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" android:id="@+id/textView37"
-                                android:layout_weight="1"/>
+                                android:layout_weight="1" android:singleLine="true"/>
                         <TextView
                                 android:text="TextView"
                                 android:layout_width="wrap_content"
@@ -697,7 +697,7 @@
                                 android:text="Религия (инт)"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" android:id="@+id/textView39"
-                                android:layout_weight="1"/>
+                                android:layout_weight="1" android:singleLine="true"/>
                         <TextView
                                 android:text="TextView"
                                 android:layout_width="wrap_content"
@@ -712,7 +712,7 @@
                                 android:text="Скрытность (лов)"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" android:id="@+id/textView41"
-                                android:layout_weight="1"/>
+                                android:layout_weight="1" android:singleLine="true"/>
                         <TextView
                                 android:text="TextView"
                                 android:layout_width="wrap_content"
@@ -727,7 +727,7 @@
                                 android:text="Убеждение (хар)"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" android:id="@+id/textView43"
-                                android:layout_weight="1"/>
+                                android:layout_weight="1" android:singleLine="true"/>
                         <TextView
                                 android:text="TextView"
                                 android:layout_width="wrap_content"
@@ -742,7 +742,7 @@
                                 android:text="Уход за животными (мдр)"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" android:id="@+id/textView45"
-                                android:layout_weight="1"/>
+                                android:layout_weight="1" android:singleLine="true"/>
                         <TextView
                                 android:text="TextView"
                                 android:layout_width="wrap_content"

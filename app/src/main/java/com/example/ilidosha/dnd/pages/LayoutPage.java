@@ -18,15 +18,14 @@ import android.widget.*;
 import com.example.ilidosha.dnd.R;
 import com.example.ilidosha.dnd.Utils.Filler;
 import com.example.ilidosha.dnd.Utils.RandomUtils;
-import com.example.ilidosha.dnd.enities.Archetype;
-import com.example.ilidosha.dnd.enities.Race;
-import com.example.ilidosha.dnd.enities.Specialization;
-import com.example.ilidosha.dnd.enities.Stat;
+import com.example.ilidosha.dnd.enities.*;
 import com.example.ilidosha.dnd.services.LevelUpService;
 import com.example.ilidosha.dnd.services.ValidatorServiceCharacter;
 import com.example.ilidosha.dnd.services.ValidatorServicePaladin;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.zip.Inflater;
 
 public class LayoutPage extends FragmentActivity {
@@ -154,8 +153,11 @@ public class LayoutPage extends FragmentActivity {
                                 if (!validatorServiceCharacter.validationCreateCharacter(testCharacter)) {
                                     Toast.makeText(LayoutPage.this, R.string.validation_failed, Toast.LENGTH_LONG)
                                             .show();
+                                    return;
                                 }
                                 fillCharacterInfoFromView();
+                                setBonusStats();
+                                navigation.setVisibility(View.VISIBLE);
                                 navigation.setSelectedItemId(R.id.navigation_character);
                             }
                         })
@@ -184,6 +186,7 @@ public class LayoutPage extends FragmentActivity {
                         "Выбранный класс: " + specializations[item],
                         Toast.LENGTH_SHORT).show();
                 Button buttonChooseArchetype = findViewById(R.id.buttonChooseArchetype);
+                reRenderBonusPerformance(Specialization.getSpecializationFromString(specializations[item]));
                 buttonChooseArchetype.setText("Выберите архетип");
                 buttonChooseArchetype.setVisibility(View.VISIBLE);
             }
@@ -240,6 +243,7 @@ public class LayoutPage extends FragmentActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.content_frame, fragment);
+        navigation.setVisibility(View.GONE);
         transaction.commit();
     }
 
@@ -247,7 +251,43 @@ public class LayoutPage extends FragmentActivity {
         recreate();
     }
 
-    private void fillCharacterInfoFromView(){
+    private void reRenderBonusPerformance(Specialization specialization) {
+        List<CheckBox> checkBoxList = new ArrayList<>();
+        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxAthletics));
+        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxAcrobatics));
+        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxSleightOfHand));
+        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxStealth));
+        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxArcana));
+        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxHistory));
+        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxInvestigation));
+        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxNature));
+        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxReligion));
+        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxAnimalHandling));
+        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxInsight));
+        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxMedicine));
+        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxPerception));
+        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxSurvival));
+        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxDeception));
+        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxIntimidation));
+        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxPerformance));
+        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxPersuasion));
+
+        TextView textView = findViewById(R.id.textViewChooseNumber);
+
+        for (CheckBox checkBox : checkBoxList) {
+            if (Arrays.asList(specialization.getPossiblePerfomance()).contains(Performance.getPerformanceFromString(checkBox.getText().toString()))) {
+                checkBox.setVisibility(View.VISIBLE);
+                textView.setVisibility(View.VISIBLE);
+                textView.setText("Выберите навыков: " + specialization.getSkillsNumber());
+            } else {
+                checkBox.setVisibility(View.GONE);
+                checkBox.setChecked(false);
+            }
+        }
+
+    }
+
+    private void fillCharacterInfoFromView() {
 
         EditText name = findViewById(R.id.editTextName);
 
@@ -288,4 +328,32 @@ public class LayoutPage extends FragmentActivity {
         character.setArmoryClass(Integer.parseInt(armoryClass.getText().toString()));
     }
 
+    private void setBonusStats() {
+        List<CheckBox> checkBoxList = new ArrayList<>();
+        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxAthletics));
+        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxAcrobatics));
+        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxSleightOfHand));
+        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxStealth));
+        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxArcana));
+        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxHistory));
+        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxInvestigation));
+        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxNature));
+        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxReligion));
+        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxAnimalHandling));
+        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxInsight));
+        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxMedicine));
+        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxPerception));
+        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxSurvival));
+        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxDeception));
+        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxIntimidation));
+        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxPerformance));
+        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxPersuasion));
+
+        for (CheckBox checkBox : checkBoxList) {
+            if (checkBox.isChecked()) {
+                character.getPerformances().add(Performance.getPerformanceFromString(checkBox.getText().toString()));
+            }
+        }
+
+    }
 }

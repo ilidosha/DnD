@@ -1,5 +1,7 @@
 package com.example.ilidosha.dnd.enities;
 
+import android.content.res.Resources;
+
 public enum Performance {
 
     ATHLETICS("Атлетика", Stat.STRENGTH),
@@ -23,6 +25,15 @@ public enum Performance {
 
     private String name;
     private Stat stat;
+
+    public static Performance getPerformanceFromString(String string){
+        for (Performance performance: Performance.values()){
+            if (performance.getName().equals(string)){
+                return performance;
+            }
+        }
+        throw new Resources.NotFoundException("Архетип не найден");
+    }
 
     Performance(String name, Stat stat) {
         this.name = name;
