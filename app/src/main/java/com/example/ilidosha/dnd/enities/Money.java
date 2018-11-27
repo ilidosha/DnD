@@ -37,4 +37,10 @@ public class Money {
         this.money = money;
     }
 
+    public Money getMoneyFromInt(int money){
+        Money result = new Money();
+        result.setMoney(money);
+        return result;
+    }
+
 }

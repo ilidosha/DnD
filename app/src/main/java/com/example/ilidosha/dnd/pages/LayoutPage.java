@@ -208,7 +208,7 @@ public class LayoutPage extends FragmentActivity {
         alert.show();
     }
 
-    public void onExpBoostButton(final View view) {
+    public void onExpBoostButton(View view) {
         LayoutInflater li = LayoutInflater.from(this);
         View dialog_window = li.inflate(R.layout.dialog_boost_exp, null);
         final EditText userInput = (EditText) dialog_window.findViewById(R.id.input_boost_lvl);
@@ -380,7 +380,6 @@ public class LayoutPage extends FragmentActivity {
                 checkBox.setChecked(false);
             }
         }
-
     }
 
     private static final int GALLERY_REQUEST = 1;
