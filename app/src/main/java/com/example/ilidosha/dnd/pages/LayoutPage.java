@@ -3,6 +3,8 @@ package com.example.ilidosha.dnd.pages;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,8 +22,8 @@ import android.view.View;
 import android.widget.*;
 
 import com.example.ilidosha.dnd.R;
-import com.example.ilidosha.dnd.Utils.Filler;
 import com.example.ilidosha.dnd.Utils.RandomUtils;
+import com.example.ilidosha.dnd.database.DatabaseHelper;
 import com.example.ilidosha.dnd.enities.*;
 import com.example.ilidosha.dnd.services.LevelUpService;
 import com.example.ilidosha.dnd.services.ValidatorServiceCharacter;
@@ -30,12 +32,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.zip.Inflater;
 
 public class LayoutPage extends FragmentActivity {
+    public BottomNavigationView navigation;
+    private DatabaseHelper mDBHelper;
+    private SQLiteDatabase mDb;
     public static com.example.ilidosha.dnd.enities.Character character;
     public static LevelUpService levelUpService = new LevelUpService();
     public static ValidatorServiceCharacter validatorServiceCharacter = new ValidatorServiceCharacter();//TODO: нужный валидатор сервис присваивать после проверки рассы
+    public static List<Spell> spells = new ArrayList<>();
+    public static Spell currentSpell;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,6 +51,14 @@ public class LayoutPage extends FragmentActivity {
         trySetImage();
         navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        mDBHelper = new DatabaseHelper(this);
+        try {
+            mDBHelper.updateDataBase();
+        } catch (IOException mIOException) {
+            throw new Error("UnableToUpdateDatabase");
+        }
+        mDb = mDBHelper.getWritableDatabase();
     }
 
     @Override
@@ -52,7 +66,6 @@ public class LayoutPage extends FragmentActivity {
         Toast.makeText(this, R.string.app_exit, Toast.LENGTH_LONG).show();
     }
 
-    protected BottomNavigationView navigation;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -73,7 +86,7 @@ public class LayoutPage extends FragmentActivity {
                         fragment = new Skills();
                         break;
                     case R.id.navigation_spells:
-                        fragment = new Spells();
+                        fragment = new MySpells();
                         break;
                     case R.id.navigation_character:
                         fragment = new Character();
@@ -253,6 +266,7 @@ public class LayoutPage extends FragmentActivity {
                                 character = new com.example.ilidosha.dnd.enities.Character();
                                 fillCharacterInfoFromView(character);
                                 character.getRace().applyClassBonusOnCharacter(character);
+                                setAllSkills(spells);
                                 navigation.setVisibility(View.VISIBLE);
                                 navigation.setSelectedItemId(R.id.navigation_character);
                             }
@@ -451,6 +465,54 @@ public class LayoutPage extends FragmentActivity {
                 Stat.WISDOM));
 
         character.setArmoryClass(Integer.parseInt(armoryClass.getText().toString()));
+    }
+
+    public void toAllSpells(View view){
+        Fragment fragment = new Spells();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.content_frame, fragment);
+        navigation.setVisibility(View.GONE);
+        transaction.commit();
+    }
+
+    public void toMySpells(View view){
+        Fragment fragment = new MySpells();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.content_frame, fragment);
+        navigation.setVisibility(View.VISIBLE);
+        transaction.commit();
+    }
+
+    public void addSpellToCharacter(View view){
+        character.getSpells().add(currentSpell);
+        toMySpells(view);
+    }
+
+    public void deleteSpellFromCharacter(View view){
+        character.getSpells().remove(currentSpell);
+        toMySpells(view);
+    }
+
+    private void setAllSkills(List<Spell> spells){
+        Cursor cursor = mDb.rawQuery("select NAME, LEVEL, SCHOOL, OVERLAY_TIME, DISTANCE, COMPONENTS, DURATION, CLASSES, DESCRIPTION from skills", null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            spells.add(
+                    new Spell(
+                            cursor.getString(0),
+                            cursor.getInt(1),
+                            cursor.getString(2),
+                            cursor.getString(3),
+                            cursor.getInt(4),
+                            cursor.getString(5),
+                            cursor.getString(6),
+                            cursor.getString(7),
+                            cursor.getString(8)));
+            cursor.moveToNext();
+        }
+        cursor.close();
     }
 
     private void setBonusStats() {

@@ -1,6 +1,5 @@
 package com.example.ilidosha.dnd.pages;
 
-
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,11 +16,11 @@ import com.example.ilidosha.dnd.enities.Spell;
 
 import static com.example.ilidosha.dnd.pages.LayoutPage.*;
 
-public class Spells extends Fragment {
+public class MySpells extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_spells, container,
+        View view = inflater.inflate(R.layout.my_spells, container,
                 false);
         renderSpells(view);
         return view;
@@ -35,21 +34,19 @@ public class Spells extends Fragment {
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             transaction.replace(R.id.content_frame, fragment);
             getActivity().findViewById(R.id.navigation).setVisibility(View.GONE);
-            currentSpell = (Spell) view.getTag();
+            currentSpell = (Spell)view.getTag();
             transaction.commit();
         }
     };
 
-    private void renderSpells(View view) {
-        LinearLayout layout = view.findViewById(R.id.linearLayoutSkillsTable);
-        for (Spell spell : spells) {
-            if (!character.getSpells().contains(spell)) {
-                Button button = new Button(getContext());
-                button.setTag(spell);
-                button.setText(spell.getLevel() + " " + spell.getName());
-                button.setOnClickListener(listener);
-                layout.addView(button);
-            }
+    private void renderSpells(View view){
+        LinearLayout layout = view.findViewById(R.id.linearLayoutMySkillsTable);
+        for (Spell spell:character.getSpells()){
+            Button button = new Button(getContext());
+            button.setTag(spell);
+            button.setText(spell.getLevel()+" "+spell.getName());
+            button.setOnClickListener(listener);
+            layout.addView(button);
         }
     }
 }
