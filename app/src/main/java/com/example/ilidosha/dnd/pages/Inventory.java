@@ -16,9 +16,9 @@ import android.widget.EditText;
 
 import com.example.ilidosha.dnd.R;
 
-public class Inventory extends Fragment {
-    final Context context = null;
+import static com.example.ilidosha.dnd.pages.LayoutPage.character;
 
+public class Inventory extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

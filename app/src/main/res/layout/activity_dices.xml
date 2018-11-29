@@ -23,5 +23,14 @@
                 android:text="Подгрузить картинку (фон)"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/button2" android:onClick="onUploadImageButton"/>
+        <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/buttonNotificationsOpen"
+                android:onClick="onNotificationsOpen"/>
+        <Button
+                android:text="Сохранить персонажа"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/buttonSaveCharacter"
+                android:onClick="onSaveCharacterButton"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

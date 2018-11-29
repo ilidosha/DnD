@@ -27,8 +27,12 @@ import com.example.ilidosha.dnd.database.DatabaseHelper;
 import com.example.ilidosha.dnd.enities.*;
 import com.example.ilidosha.dnd.services.LevelUpService;
 import com.example.ilidosha.dnd.services.ValidatorServiceCharacter;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -42,6 +46,7 @@ public class LayoutPage extends FragmentActivity {
     public static ValidatorServiceCharacter validatorServiceCharacter = new ValidatorServiceCharacter();//TODO: нужный валидатор сервис присваивать после проверки рассы
     public static List<Spell> spells = new ArrayList<>();
     public static Spell currentSpell;
+    private List<CheckBox> checkBoxList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -143,7 +148,7 @@ public class LayoutPage extends FragmentActivity {
 
     }
 
-    public void onChangeCurentHPButton(final View view) {
+    public void onChangeCurrentHPButton(final View view) {
         LayoutInflater li = LayoutInflater.from(this);
         View dialog_window = li.inflate(R.layout.dialog_change_hp, null);
         final EditText userInput = (EditText) dialog_window.findViewById(R.id.dialog_change_hp);
@@ -265,10 +270,10 @@ public class LayoutPage extends FragmentActivity {
                                 }
                                 character = new com.example.ilidosha.dnd.enities.Character();
                                 fillCharacterInfoFromView(character);
-                                character.getRace().applyClassBonusOnCharacter(character);
+                                character.getRace().applyRaceBonusOnCharacter(character, LayoutPage.this);
                                 setAllSkills(spells);
                                 navigation.setVisibility(View.VISIBLE);
-                                navigation.setSelectedItemId(R.id.navigation_character);
+                                toMainMenu();
                             }
                         })
                 .setNegativeButton("Отмена",
@@ -284,10 +289,7 @@ public class LayoutPage extends FragmentActivity {
     public void onChangeSpecializationButton(final View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Выбор класса");
-        final String[] specializations = new String[Specialization.values().length];
-        for (int i = 0; i < Specialization.values().length; ++i) {
-            specializations[i] = Specialization.values()[i].getName();
-        }
+        final String[] specializations = RandomUtils.getSpecializationsNameArray();
         builder.setItems(specializations, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int item) {
@@ -327,6 +329,26 @@ public class LayoutPage extends FragmentActivity {
         builder.create().show();
     }
 
+    public void onSaveCharacterButton(View view){
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            mapper.writeValue(new File(this.getApplicationInfo().dataDir + "/databases/character.json"), character);
+            System.out.println(mapper.writeValueAsString(character));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void onUploadCharacterButton(View view){
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            character = mapper.readValue(new File(this.getApplicationInfo().dataDir + "/databases/character.json"), com.example.ilidosha.dnd.enities.Character.class);
+            toMainMenu();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void onChangeRaceButton(final View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Выбор расы");
@@ -362,7 +384,7 @@ public class LayoutPage extends FragmentActivity {
     }
 
     private void reRenderBonusPerformance(Specialization specialization) {
-        List<CheckBox> checkBoxList = new ArrayList<>();
+        checkBoxList = new ArrayList<>();
         checkBoxList.add((CheckBox) findViewById(R.id.checkBoxAthletics));
         checkBoxList.add((CheckBox) findViewById(R.id.checkBoxAcrobatics));
         checkBoxList.add((CheckBox) findViewById(R.id.checkBoxSleightOfHand));
@@ -426,6 +448,23 @@ public class LayoutPage extends FragmentActivity {
         }
     }
 
+    public void onNotificationsOpen(View view){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Оповещения");
+        String[] customBuildersNames = new String[character.getNotifications().size()];
+        for (int i=0;i<character.getNotifications().size();++i){
+            customBuildersNames[i]=character.getNotifications().get(i).getName();
+        }
+        builder.setItems(customBuildersNames, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                character.getNotifications().get(item).getBuilder().create().show();;
+            }
+        });
+        builder.setCancelable(true);
+        builder.create().show();
+    }
+
     private void fillCharacterInfoFromView(com.example.ilidosha.dnd.enities.Character character) {
 
         EditText name = findViewById(R.id.editTextName);
@@ -448,6 +487,7 @@ public class LayoutPage extends FragmentActivity {
         character.setRace(Race.getRaceFromString(race.getText().toString()));
         character.setArchetype(Archetype.getArchetypeFromString(archetype.getText().toString()));
         character.setSpecialization(Specialization.getSpecializationFromString(specialization.getText().toString()));
+        setBonusStats();
 
         Stat.INTELLIGENCE.setValue(Integer.parseInt(intelligence.getText().toString()));
         Stat.AGILITY.setValue(Integer.parseInt(agility.getText().toString()));
@@ -485,6 +525,10 @@ public class LayoutPage extends FragmentActivity {
         transaction.commit();
     }
 
+    private void toMainMenu(){
+        navigation.setSelectedItemId(R.id.navigation_character);
+    }
+
     public void addSpellToCharacter(View view){
         character.getSpells().add(currentSpell);
         toMySpells(view);
@@ -516,26 +560,6 @@ public class LayoutPage extends FragmentActivity {
     }
 
     private void setBonusStats() {
-        List<CheckBox> checkBoxList = new ArrayList<>();
-        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxAthletics));
-        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxAcrobatics));
-        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxSleightOfHand));
-        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxStealth));
-        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxArcana));
-        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxHistory));
-        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxInvestigation));
-        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxNature));
-        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxReligion));
-        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxAnimalHandling));
-        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxInsight));
-        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxMedicine));
-        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxPerception));
-        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxSurvival));
-        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxDeception));
-        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxIntimidation));
-        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxPerformance));
-        checkBoxList.add((CheckBox) findViewById(R.id.checkBoxPersuasion));
-
         for (CheckBox checkBox : checkBoxList) {
             if (checkBox.isChecked()) {
                 character.getPerformances().add(Performance.getPerformanceFromString(checkBox.getText().toString()));

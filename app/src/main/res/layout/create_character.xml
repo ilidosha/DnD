@@ -211,6 +211,11 @@
                     android:layout_height="wrap_content"
                     android:onClick="onCreateCharacterButton"
                     android:text="Создать персонажа"/>
+            <Button
+                    android:text="Загрузить персонажа"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/buttonUploadCharacter"
+                    android:onClick="onUploadCharacterButton"/>
 
         </LinearLayout>
     </ScrollView>

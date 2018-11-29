@@ -1,35 +1,46 @@
 package com.example.ilidosha.dnd.enities;
 
+import android.app.AlertDialog;
 import android.net.Uri;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class Character {
-    String name;
-    Race race;
-    Specialization specialization;
-    int level;
-    int masteryLevel = 2;
-    Archetype archetype;
-    List<Item> items=new ArrayList<>();
-    List<Spell> spells=new ArrayList<>();
-    List<Performance> performances = new ArrayList<>();
-    int adult;
-    List<Stat> stats = Arrays.asList(Stat.CHARISMA,Stat.WISDOM,Stat.BODY,Stat.INTELLIGENCE,Stat.AGILITY,Stat.STRENGTH);
-    Health health = new Health();
-    int armoryClass;
-    int initiative;
-    int speed;
-    int experience;
-    boolean inspiration;
-    Personality personality = new Personality();
-    List<String> languages=new ArrayList<>();
-    List<Skill> skills=new ArrayList<>();
-    Money money = new Money();
-    List<Weapon> weapons=new ArrayList<>();
-    Uri photo;
+    private String name;
+    private Race race;
+    private Specialization specialization;
+    private int level;
+    private int masteryLevel = 2;
+    private Archetype archetype;
+    private List<Item> items=new ArrayList<>();
+    private List<Spell> spells=new ArrayList<>();
+    private List<Performance> performances = new ArrayList<>();
+    private int adult;
+    private List<Stat> stats = Arrays.asList(Stat.CHARISMA,Stat.WISDOM,Stat.BODY,Stat.INTELLIGENCE,Stat.AGILITY,Stat.STRENGTH);
+    private Health health = new Health();
+    private int armoryClass;
+    private int initiative;
+    private int speed;
+    private int experience;
+    private boolean inspiration;
+    private Personality personality = new Personality();
+    private List<String> languages=new ArrayList<>();
+    private List<Skill> skills=new ArrayList<>();
+    @JsonIgnore
+    private Money money = new Money();
+    private List<Weapon> weapons=new ArrayList<>();
+    private Uri photo;
+    @JsonIgnore
+    private List<CustomBuilder> notifications = new ArrayList<>();
+
+
+
+    public List<CustomBuilder> getNotifications() {
+        return notifications;
+    }
 
     public Uri getPhoto() {
         return photo;
@@ -53,10 +64,6 @@ public class Character {
 
     public List<Performance> getPerformances() {
         return performances;
-    }
-
-    public void setPerformances(List<Performance> performances) {
-        this.performances = performances;
     }
 
     public void setRace(Race race) {
@@ -99,16 +106,8 @@ public class Character {
         return items;
     }
 
-    public void setItems(List<Item> items) {
-        this.items = items;
-    }
-
     public List<Spell> getSpells() {
         return spells;
-    }
-
-    public void setSpells(List<Spell> spells) {
-        this.spells = spells;
     }
 
     public int getAdult() {
@@ -121,10 +120,6 @@ public class Character {
 
     public Health getHealth() {
         return health;
-    }
-
-    public void setHealth(Health health) {
-        this.health = health;
     }
 
     public int getArmoryClass() {
@@ -179,32 +174,16 @@ public class Character {
         return languages;
     }
 
-    public void setLanguages(List<String> languages) {
-        this.languages = languages;
-    }
-
     public List<Skill> getSkills() {
         return skills;
-    }
-
-    public void setSkills(List<Skill> skills) {
-        this.skills = skills;
     }
 
     public Money getMoney() {
         return money;
     }
 
-    public void setMoney(Money money) {
-        this.money = money;
-    }
-
     public List<Weapon> getWeapons() {
         return weapons;
-    }
-
-    public void setWeapons(List<Weapon> weapons) {
-        this.weapons = weapons;
     }
 
     public List<Stat> getStats() {

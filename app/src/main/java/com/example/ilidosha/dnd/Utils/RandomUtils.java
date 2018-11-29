@@ -2,6 +2,7 @@ package com.example.ilidosha.dnd.Utils;
 
 import com.example.ilidosha.dnd.R;
 import com.example.ilidosha.dnd.enities.Performance;
+import com.example.ilidosha.dnd.enities.Specialization;
 import com.example.ilidosha.dnd.enities.Stat;
 
 import static com.example.ilidosha.dnd.pages.LayoutPage.character;
@@ -42,5 +43,13 @@ public class RandomUtils {
         } else {
             return (stat - 11) / 2;
         }
+    }
+
+    public static String[] getSpecializationsNameArray(){
+        final String[] specializations = new String[Specialization.values().length];
+        for (int i = 0; i < Specialization.values().length; ++i) {
+            specializations[i] = Specialization.values()[i].getName();
+        }
+        return specializations;
     }
 }

@@ -30,11 +30,14 @@ public class SpellDescription extends Fragment {
 
 
     private void renderSkillDescription(View view){
-        FloatingActionButton button = view.findViewById(R.id.buttonItemDeleteSpellFromCharacter);
+        FloatingActionButton buttonDelete = view.findViewById(R.id.buttonItemDeleteSpellFromCharacter);
+        FloatingActionButton buttonAdd = view.findViewById(R.id.buttonAddSpellToCharacter);
         if (character.getSpells().contains(currentSpell)){
-            button.setVisibility(View.VISIBLE);
+            buttonDelete.setVisibility(View.VISIBLE);
+            buttonAdd.setVisibility(View.GONE);
         } else {
-            button.setVisibility(View.GONE);
+            buttonDelete.setVisibility(View.GONE);
+            buttonAdd.setVisibility(View.VISIBLE);
         }
         TextView name = view.findViewById(R.id.textViewNameSD);
         TextView level = view.findViewById(R.id.textViewLevelSD);
