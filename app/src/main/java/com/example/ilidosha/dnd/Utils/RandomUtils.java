@@ -3,7 +3,10 @@ package com.example.ilidosha.dnd.Utils;
 import com.example.ilidosha.dnd.R;
 import com.example.ilidosha.dnd.enities.Performance;
 import com.example.ilidosha.dnd.enities.Specialization;
+import com.example.ilidosha.dnd.enities.Spell;
 import com.example.ilidosha.dnd.enities.Stat;
+
+import java.util.List;
 
 import static com.example.ilidosha.dnd.pages.LayoutPage.character;
 
@@ -51,5 +54,14 @@ public class RandomUtils {
             specializations[i] = Specialization.values()[i].getName();
         }
         return specializations;
+    }
+
+    public static Spell findSpellByName(List<Spell> spells, String name){
+        for (Spell spell:spells){
+            if (spell.getName().equals(name)){
+                return spell;
+            }
+        }
+        throw new RuntimeException("Способность не найдена!");
     }
 }

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                                             android:layout_height="match_parent">
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" tools:layout_editor_absoluteY="8dp" tools:layout_editor_absoluteX="8dp"
+            android:id="@+id/scrollView3">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:orientation="vertical">
+            <TextView
+                    android:text="Название: "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textViewNameLabel" android:textSize="24sp"
+                    android:textStyle="bold"/>
+            <TextView
+                    android:text="Название"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textViewNameSD"/>
+            <TextView
+                    android:text="Описание:"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textViewDescriptionLabel"
+                    android:textSize="24sp" android:textStyle="bold" tools:layout_editor_absoluteY="406dp"
+                    tools:layout_editor_absoluteX="8dp"/>
+            <TextView
+                    android:text="Описание"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textViewDescriptionSD"/>
+        </LinearLayout>
+    </ScrollView>
+    <android.support.design.widget.FloatingActionButton
+            android:id="@+id/buttonBackToMySkills"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginBottom="36dp"
+            android:clickable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:srcCompat="@android:drawable/ic_menu_revert" android:onClick="onBackToMySkillsButton"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="36dp"/>
+</android.support.constraint.ConstraintLayout>

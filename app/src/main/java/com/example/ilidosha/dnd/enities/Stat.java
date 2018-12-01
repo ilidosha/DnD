@@ -1,14 +1,16 @@
 package com.example.ilidosha.dnd.enities;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
-
-import java.io.Serializable;
+import android.content.res.Resources;
+import com.example.ilidosha.dnd.jackson.StatDeserializer;
+import com.example.ilidosha.dnd.jackson.StatSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import static com.example.ilidosha.dnd.enities.Performance.*;
 
-public enum Stat implements Serializable {
+@JsonSerialize(using = StatSerializer.class)
+@JsonDeserialize(using = StatDeserializer.class)
+public enum Stat {
     WISDOM("Мудрость") {
         @Override
         public Performance[] getDependencedPerformance() {
@@ -49,17 +51,25 @@ public enum Stat implements Serializable {
 
     String name;
 
+    public static Stat getStatFromString(String string){
+        for (Stat stat: Stat.values()){
+            if (stat.toString().equals(string)){
+                return stat;
+            }
+        }
+        throw new Resources.NotFoundException("Стата не найдена");
+    }
+
     Stat(String name) {
         this.name=name;
     }
 
     public abstract Performance[] getDependencedPerformance();
 
-    @JsonValue
     public String getName() {
         return name;
     }
-    @JsonValue
+
     public int getValue() {
         return value;
     }

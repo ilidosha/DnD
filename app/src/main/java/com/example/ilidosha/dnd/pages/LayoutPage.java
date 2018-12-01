@@ -27,12 +27,10 @@ import com.example.ilidosha.dnd.database.DatabaseHelper;
 import com.example.ilidosha.dnd.enities.*;
 import com.example.ilidosha.dnd.services.LevelUpService;
 import com.example.ilidosha.dnd.services.ValidatorServiceCharacter;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -46,6 +44,7 @@ public class LayoutPage extends FragmentActivity {
     public static ValidatorServiceCharacter validatorServiceCharacter = new ValidatorServiceCharacter();//TODO: нужный валидатор сервис присваивать после проверки рассы
     public static List<Spell> spells = new ArrayList<>();
     public static Spell currentSpell;
+    public static Skill currentSkill;
     private List<CheckBox> checkBoxList;
 
     @Override
@@ -88,7 +87,7 @@ public class LayoutPage extends FragmentActivity {
                         fragment = new Inventory();
                         break;
                     case R.id.navigation_skills:
-                        fragment = new Skills();
+                        fragment = new MySkills();
                         break;
                     case R.id.navigation_spells:
                         fragment = new MySpells();
@@ -333,7 +332,6 @@ public class LayoutPage extends FragmentActivity {
         ObjectMapper mapper = new ObjectMapper();
         try {
             mapper.writeValue(new File(this.getApplicationInfo().dataDir + "/databases/character.json"), character);
-            System.out.println(mapper.writeValueAsString(character));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -343,6 +341,7 @@ public class LayoutPage extends FragmentActivity {
         ObjectMapper mapper = new ObjectMapper();
         try {
             character = mapper.readValue(new File(this.getApplicationInfo().dataDir + "/databases/character.json"), com.example.ilidosha.dnd.enities.Character.class);
+            setAllSkills(spells);
             toMainMenu();
         } catch (IOException e) {
             e.printStackTrace();
@@ -381,6 +380,15 @@ public class LayoutPage extends FragmentActivity {
 
     public void onChangeTextColorButton(final View view) {
         recreate();
+    }
+
+    public void onBackToMySkillsButton (final View view){
+        Fragment fragment = new MySkills();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.content_frame, fragment);
+        navigation.setVisibility(View.VISIBLE);
+        transaction.commit();
     }
 
     private void reRenderBonusPerformance(Specialization specialization) {
@@ -458,7 +466,7 @@ public class LayoutPage extends FragmentActivity {
         builder.setItems(customBuildersNames, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int item) {
-                character.getNotifications().get(item).getBuilder().create().show();;
+                character.getNotifications().get(item).getBuilder().create().show();
             }
         });
         builder.setCancelable(true);
@@ -527,6 +535,7 @@ public class LayoutPage extends FragmentActivity {
 
     private void toMainMenu(){
         navigation.setSelectedItemId(R.id.navigation_character);
+        navigation.setVisibility(View.VISIBLE);
     }
 
     public void addSpellToCharacter(View view){

@@ -228,8 +228,8 @@ public enum Specialization {
         }
     },
 
-    WARLOCK("Колдун") {
-        @Override
+    WARLOCK("Колдун") { //TODO По умолчанию скилл "Поиск фамильяра"
+        @Override//TODO Skill DECEPTIVE_INFLUENCE = new Skill("Обманчивое влияние","Вы получаете владение навыками Обман и Убеждение.")
         public Archetype[] getArchetypes() {
             return new Archetype[]{WARLOCK_ARCHYFAIRY, WARLOCK_FIEND, WARLOCK_GREAT_ANCIENT};
         }
@@ -304,7 +304,7 @@ public enum Specialization {
         }
     },
 
-    PALADIN("Паладин") {
+    PALADIN("Паладин") { //TODO выбор боевого стиля
         @Override
         public Archetype[] getArchetypes() {
             return new Archetype[]{PALADIN_ANCIENTS, PALADIN_DEVOTION, PALADIN_VENGEANCE};
@@ -344,6 +344,12 @@ public enum Specialization {
     },
 
     ROGUE("Плут") {
+        /*
+        КОМПЕТЕНТНОСТЬ
+На 1 уровне выберите два ваших владения в навыках или одно владение навыком и владение воровскими инструментами. Ваш бонус мастерства удваивается для всех проверок характеристик, которые вы совершаете, используя любое из выбранных владений.
+
+На 6 уровне вы можете выбрать ещё два владения (навыки или воровские инструменты), чтобы получить эту же выгоду.
+         */
         @Override
         public Archetype[] getArchetypes() {
             return new Archetype[]{ROGUE_KILLER, ROGUE_MYSTICAL_TRICKSTER, ROGUE_THIEF};

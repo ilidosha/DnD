@@ -5,8 +5,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.support.annotation.NonNull;
+import android.widget.Button;
+import android.widget.Toast;
+import com.example.ilidosha.dnd.R;
+import com.example.ilidosha.dnd.Utils.RandomUtils;
+import com.example.ilidosha.dnd.database.SkillsConstants;
+import com.example.ilidosha.dnd.pages.LayoutPage;
 
-public enum Race {
+public enum Race implements SkillsConstants {
     HALF_ORC("Полуорк") {
         @Override
         public void applyRaceBonusOnCharacter(Character character, Context context) {
@@ -21,6 +27,10 @@ public enum Race {
                 }
             }
             character.setSpeed(30);
+            character.getSkills().add(DARK_VISION);
+            character.getSkills().add(FRIGHTINING_VIEW);
+            character.getSkills().add(UNWAVERING_DURABILITY);
+            character.getSkills().add(FURY_ATTACKS);
         }
     },
     HALF_ELF("Полуэльф") {
@@ -38,6 +48,8 @@ public enum Race {
             setAdditionalStats(character, context);
             character.getNotifications().add(getHalfElfBonusPerformances(character, context));
             character.setSpeed(30);
+            character.getSkills().add(DARK_VISION);
+            character.getSkills().add(FARIES_LEGACY);
         }
 
         private void setAdditionalStats(final Character character, Context context) {
@@ -127,7 +139,7 @@ public enum Race {
 
         }
     },
-    FOREST_ELD("Лесной эльф") {
+    FOREST_ELD("Лесной эльф") {//TODO: владение навыком "Внимательность"
         @Override
         public void applyRaceBonusOnCharacter(Character character, Context context) {
             for (Stat stat : character.getStats()) {
@@ -141,6 +153,13 @@ public enum Race {
                 }
             }
             character.setSpeed(35);
+            character.getSkills().add(DARK_VISION);
+            character.getSkills().add(HIGH_SENSITIVITY);
+            character.getSkills().add(FARIES_LEGACY);
+            character.getSkills().add(TRANCE);
+            character.getSkills().add(POSSESSION_OF_ELVEN_WEAPONS);
+            character.getSkills().add(FAST_LEGS);
+            character.getSkills().add(CAMOUFLAGE);
         }
     },
     DARK_ELF("Тёмный эльф") {
@@ -163,6 +182,38 @@ public enum Race {
                 }
             }
             character.setSpeed(25);
+            character.getSkills().add(LUCKY);
+            character.getSkills().add(BRAVE);
+            character.getSkills().add(HALFLING_AGILITY);
+            character.getNotifications().add(getHalflingType(character,context));
+        }
+
+        private CustomBuilder getHalflingType(final Character character, Context context){
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            final CustomBuilder customBuilder = new CustomBuilder(builder,"Разновидность полурослика");
+            final String[] types = new String[]{STOCKY_DURABILITY.getName(), NATURE_STEALTH.getName()};
+            builder.setItems(types, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int item) {
+                    switch (item){
+                        case 0:
+                            character.getSkills().add(STOCKY_DURABILITY);
+
+                            Stat body = character.getStats().get(character.getStats().indexOf(Stat.BODY));
+                            body.setValue(body.getValue()+1);
+                            break;
+                        case 1:
+                            character.getSkills().add(NATURE_STEALTH);
+
+                            Stat charisma = character.getStats().get(character.getStats().indexOf(Stat.CHARISMA));
+                            charisma.setValue(charisma.getValue()+1);
+                            break;
+                    }
+                    character.getNotifications().remove(customBuilder);
+                }
+            });
+            builder.setCancelable(true);
+            return customBuilder;
         }
     },
     GNOME("Гном") {
@@ -191,6 +242,10 @@ public enum Race {
                 }
             }
             character.setSpeed(30);
+            character.getSkills().add(DARK_VISION);
+            character.getSkills().add(HELL_RESISTANCE);
+            character.getSkills().add(DEVILS_LEGACY);
+            character.getSpells().add(RandomUtils.findSpellByName(LayoutPage.spells,"Чудотворство"));
         }
     };
 
