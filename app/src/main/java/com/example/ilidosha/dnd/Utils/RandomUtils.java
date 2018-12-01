@@ -64,4 +64,12 @@ public class RandomUtils {
         }
         throw new RuntimeException("Способность не найдена!");
     }
+
+    public static String[] getStatNameArray(){
+        String[] stats = new String[Stat.values().length];
+        for (int i=0;i<Stat.values().length;++i){
+            stats[i] = Stat.values()[i].getName();
+        }
+        return stats;
+    }
 }

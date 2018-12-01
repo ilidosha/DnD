@@ -40,7 +40,7 @@ public class LayoutPage extends FragmentActivity {
     private DatabaseHelper mDBHelper;
     private SQLiteDatabase mDb;
     public static com.example.ilidosha.dnd.enities.Character character;
-    public static LevelUpService levelUpService = new LevelUpService();
+    public LevelUpService levelUpService = new LevelUpService(LayoutPage.this);
     public static ValidatorServiceCharacter validatorServiceCharacter = new ValidatorServiceCharacter();//TODO: нужный валидатор сервис присваивать после проверки рассы
     public static List<Spell> spells = new ArrayList<>();
     public static Spell currentSpell;

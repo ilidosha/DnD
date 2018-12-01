@@ -3,9 +3,15 @@ package com.example.ilidosha.dnd.enities;
 public class Item {
     String name;
     Money cost;
-    public void itemAdd(String name,Money cost){
 
+    public Item() {
     }
+
+    public Item(String name, Money cost) {
+        this.name = name;
+        this.cost = cost;
+    }
+
     public void setItemName(String name){
         this.name=name;
     }

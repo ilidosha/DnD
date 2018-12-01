@@ -1,6 +1,8 @@
 package com.example.ilidosha.dnd.enities;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import com.example.ilidosha.dnd.database.SkillsConstants;
 
@@ -262,9 +264,28 @@ public enum Archetype implements SkillsConstants {
         public void applyArchetypeLevelBonusOnCharacter(Character character, Context context, int level) {
             switch (level) {
                 case 3:
-                    //TODO На выбор скилл: Сокрушитель орд, Убийца великанов, Убийца колоссов
+                    character.getNotifications().add(bootyHunter(character,context));
                     break;
             }
+        }
+
+        private CustomBuilder bootyHunter(final Character character, final Context context) {
+            final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            final CustomBuilder customBuilder = new CustomBuilder(builder, "Добыча охотника");
+            final Skill[] styles = new Skill[]{DESTROYER_OF_HORDES, GIANT_SLAYER, KILLER_OF_GIANTS};
+            final String[] strings = new String[styles.length];
+            for (int i = 0; i < styles.length; ++i) {
+                strings[i] = styles[i].getName();
+            }
+            builder.setItems(strings, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int item) {
+                    character.getSkills().add(styles[item]);
+                    character.getNotifications().remove(customBuilder);
+                }
+            });
+            builder.setCancelable(true);
+            return customBuilder;
         }
     },
     RANGER_BEASTMASTER("Повелитель зверей") {

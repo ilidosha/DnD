@@ -2,7 +2,7 @@ package com.example.ilidosha.dnd.enities;
 
 public class Spell {
     String name;
-    int level;
+    private int level;
     String school;
     String overlayTime;
     int distance;
@@ -10,6 +10,9 @@ public class Spell {
     String duration;
     String classes;
     String description;
+
+    public Spell() {
+    }
 
     public String getName() {
         return name;

@@ -1,8 +1,15 @@
 package com.example.ilidosha.dnd.enities;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.Resources;
+import android.widget.Toast;
+import com.example.ilidosha.dnd.Utils.RandomUtils;
 import com.example.ilidosha.dnd.database.SkillsConstants;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.example.ilidosha.dnd.enities.Archetype.*;
 import static com.example.ilidosha.dnd.enities.Performance.*;
@@ -303,7 +310,7 @@ public enum Specialization implements SkillsConstants {
                     character.getSpellCells().setCurrent(2, character.getSpellCells().getCurrent(2) + 2);
                     break;
                 case 4:
-                    //TODO бонус 2 статам по 1 или 1 на 2
+                    character.getNotifications().add(increaseOfCharacteristics(character, context));
                     character.getSpellCells().setMax(2, 3);
                     character.getSpellCells().setCurrent(2, character.getSpellCells().getCurrent(2) + 1);
                     break;
@@ -321,10 +328,9 @@ public enum Specialization implements SkillsConstants {
         }
     },
 
-    WARLOCK("Колдун") { //TODO По умолчанию скилл "Поиск фамильяра"
+    WARLOCK("Колдун") {
 
         @Override
-//TODO Skill DECEPTIVE_INFLUENCE = new Skill("Обманчивое влияние","Вы получаете владение навыками Обман и Убеждение.")
         public Archetype[] getArchetypes() {
             return new Archetype[]{WARLOCK_ARCHYFAIRY, WARLOCK_FIEND, WARLOCK_GREAT_ANCIENT};
         }
@@ -384,10 +390,9 @@ public enum Specialization implements SkillsConstants {
                     character.getSpellCells().setCurrent(2, 2);
                     break;
                 case 4:
-                    //TODO бонус 2 статам по 1 или 1 на 2
+                    character.getNotifications().add(increaseOfCharacteristics(character, context));
                     break;
                 case 5:
-                    //TODO +1 воззвание
                     character.setMasteryLevel(3);
                     character.getSpellCells().setMax(2, 0);
                     character.getSpellCells().setCurrent(2, 0);
@@ -448,7 +453,7 @@ public enum Specialization implements SkillsConstants {
         }
     },
 
-    PALADIN("Паладин") { //TODO выбор боевого стиля
+    PALADIN("Паладин") {
 
         @Override
         public Archetype[] getArchetypes() {
@@ -495,11 +500,11 @@ public enum Specialization implements SkillsConstants {
 
         @Override
         public void applySpecializationLevelBonusOnCharacter(Character character, Context context, int level) {
-            //TODO выбор боевого стиля
             switch (level) {
                 case 2:
                     character.getSpellCells().setMax(1, 2);
                     character.getSkills().add(DIVINE_PUNISHMENT);
+                    character.getNotifications().add(fightingStylePaladin(character,context));
                     break;
                 case 3:
                     character.getSpellCells().setMax(1, 3);
@@ -509,7 +514,7 @@ public enum Specialization implements SkillsConstants {
                     character.getSkills().add(SPELLS_OF_THE_OATH);
                     break;
                 case 4:
-                    //TODO повысить статы
+                    character.getNotifications().add(increaseOfCharacteristics(character, context));
                     break;
                 case 5:
                     character.setMasteryLevel(3);
@@ -523,6 +528,28 @@ public enum Specialization implements SkillsConstants {
                     character.getSkills().add(AURA_OF_PROTECTION);
                     break;
             }
+        }
+
+        private CustomBuilder fightingStylePaladin(final Character character, final Context context) {
+            final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            final CustomBuilder customBuilder = new CustomBuilder(builder, "Боевой стиль");
+            final Skill[] styles = new Skill[]{DUELLIST, DEFENSE, PROTECTION, BATTLE_OF_BIG_GUNS};
+            final String[] strings = new String[styles.length];
+            for (int i = 0; i < styles.length; ++i) {
+                strings[i] = styles[i].getName();
+            }
+            builder.setItems(strings, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int item) {
+                    if (styles[item].getName().equals(DEFENSE.getName())){
+                        character.setArmoryClass(character.getArmoryClass()+1);
+                    }
+                    character.getSkills().add(styles[item]);
+                    character.getNotifications().remove(customBuilder);
+                }
+            });
+            builder.setCancelable(true);
+            return customBuilder;
         }
     },
 
@@ -584,19 +611,19 @@ public enum Specialization implements SkillsConstants {
                     character.getSkills().add(CUNNING_ACTION);
                     break;
                 case 3:
-                    for (Skill skill:character.getSkills()){
-                        if(skill.getName().contains("Скрытая атака")){
+                    for (Skill skill : character.getSkills()) {
+                        if (skill.getName().contains("Скрытая атака")) {
                             skill.setName("Скрытая атака 2d6");
                             break;
                         }
                     }
                     break;
                 case 4:
-                    //TODO повышение характеристик
+                    character.getNotifications().add(increaseOfCharacteristics(character, context));
                     break;
                 case 5:
-                    for (Skill skill:character.getSkills()){
-                        if(skill.getName().contains("Скрытая атака")){
+                    for (Skill skill : character.getSkills()) {
+                        if (skill.getName().contains("Скрытая атака")) {
                             skill.setName("Скрытая атака 2d6");
                             break;
                         }
@@ -658,29 +685,51 @@ public enum Specialization implements SkillsConstants {
         public void applySpecializationLevelBonusOnCharacter(Character character, Context context, int level) {
             switch (level) {
                 case 2:
-                    //TODO боевой стиль
-                    character.getSpellCells().setMax(1,2);
-                    character.getSpellCells().setCurrent(1,2);
+                    character.getNotifications().add(fightingStyleRanger(character,context));
+                    character.getSpellCells().setMax(1, 2);
+                    character.getSpellCells().setCurrent(1, 2);
                     break;
                 case 3:
-                    character.getSpellCells().setMax(1,3);
-                    character.getSpellCells().setCurrent(1,3);
+                    character.getSpellCells().setMax(1, 3);
+                    character.getSpellCells().setCurrent(1, 3);
                     character.getSkills().add(PRISTINE_AWARENESS);
                     break;
                 case 4:
-                    //TODO повышение характеристик
+                    character.getNotifications().add(increaseOfCharacteristics(character, context));
                     break;
                 case 5:
-                    character.getSpellCells().setMax(1,4);
-                    character.getSpellCells().setCurrent(1,4);
-                    character.getSpellCells().setMax(2,2);
-                    character.getSpellCells().setCurrent(2,2);
+                    character.getSpellCells().setMax(1, 4);
+                    character.getSpellCells().setCurrent(1, 4);
+                    character.getSpellCells().setMax(2, 2);
+                    character.getSpellCells().setCurrent(2, 2);
                     character.getSkills().add(ADDITIONAL_ATTACK);
                     character.setMasteryLevel(3);
                     break;
                 case 6:
                     break;
             }
+        }
+
+        private CustomBuilder fightingStyleRanger(final Character character, final Context context) {
+            final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            final CustomBuilder customBuilder = new CustomBuilder(builder, "Боевой стиль");
+            final Skill[] styles = new Skill[]{DUELLIST, DEFENSE, BATTLE_OF_TWO_WEAPONS, SHOOTING};
+            final String[] strings = new String[styles.length];
+            for (int i = 0; i < styles.length; ++i) {
+                strings[i] = styles[i].getName();
+            }
+            builder.setItems(strings, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int item) {
+                    if (styles[item].getName().equals(DEFENSE.getName())){
+                        character.setArmoryClass(character.getArmoryClass()+1);
+                    }
+                    character.getSkills().add(styles[item]);
+                    character.getNotifications().remove(customBuilder);
+                }
+            });
+            builder.setCancelable(true);
+            return customBuilder;
         }
     },
 
@@ -726,8 +775,8 @@ public enum Specialization implements SkillsConstants {
         public void applySpecializationBonusOnCharacter(Character character, Context context) {
             character.getSkills().add(SKILL_FOCUS_SORCERER);
             character.getSkills().add(WAVE_OF_WILD_MAGIC);
-            character.getSpellCells().setMax(1,2);
-            character.getSpellCells().setCurrent(1,2);
+            character.getSpellCells().setMax(1, 2);
+            character.getSpellCells().setCurrent(1, 2);
         }
 
         @Override
@@ -735,29 +784,29 @@ public enum Specialization implements SkillsConstants {
             switch (level) {
                 case 2:
                     character.getSkills().add(SOURCE_OF_THE_MAGIC);
-                    character.getSpellCells().setMax(1,3);
-                    character.getSpellCells().setCurrent(1,3);
+                    character.getSpellCells().setMax(1, 3);
+                    character.getSpellCells().setCurrent(1, 3);
                     break;
                 case 3:
-                    character.getSpellCells().setMax(1,4);
-                    character.getSpellCells().setCurrent(1,4);
-                    character.getSpellCells().setMax(2,2);
-                    character.getSpellCells().setCurrent(2,2);
+                    character.getSpellCells().setMax(1, 4);
+                    character.getSpellCells().setCurrent(1, 4);
+                    character.getSpellCells().setMax(2, 2);
+                    character.getSpellCells().setCurrent(2, 2);
                     //TODO 2 варианта из возможных метамагий
                     break;
                 case 4:
-                    character.getSpellCells().setMax(2,3);
-                    character.getSpellCells().setCurrent(2,3);
-                    //TODO повышение характеристик
+                    character.getSpellCells().setMax(2, 3);
+                    character.getSpellCells().setCurrent(2, 3);
+                    character.getNotifications().add(increaseOfCharacteristics(character, context));
                     break;
                 case 5:
-                    character.getSpellCells().setMax(3,2);
-                    character.getSpellCells().setCurrent(3,2);
+                    character.getSpellCells().setMax(3, 2);
+                    character.getSpellCells().setCurrent(3, 2);
                     character.setMasteryLevel(3);
                     break;
                 case 6:
-                    character.getSpellCells().setMax(3,3);
-                    character.getSpellCells().setCurrent(3,3);
+                    character.getSpellCells().setMax(3, 3);
+                    character.getSpellCells().setCurrent(3, 3);
                     break;
             }
         }
@@ -786,6 +835,36 @@ public enum Specialization implements SkillsConstants {
     }
 
     private String name;
+
+    protected CustomBuilder increaseOfCharacteristics(final Character character, final Context context) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        final CustomBuilder customBuilder = new CustomBuilder(builder, "Увеличение характеристик");
+
+        final List<Stat> chosenStats = new ArrayList<>(2);
+        final String[] stats = RandomUtils.getStatNameArray();
+        builder.setItems(stats, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                chosenStats.add(Stat.getStatFromName(stats[item]));
+                Toast.makeText(context, "Вы выбрали " + stats[item],
+                        Toast.LENGTH_SHORT).show();
+                if (chosenStats.size() == 1) {
+                    builder.create().show();
+                } else {
+                    for (Stat stat : character.getStats()) {
+                        for (Stat chosenStat : chosenStats) {
+                            if (stat == chosenStat) {
+                                stat.setValue(stat.getValue() + 1);
+                            }
+                        }
+                    }
+                    character.getNotifications().remove(customBuilder);
+                }
+            }
+        });
+        builder.setCancelable(true);
+        return customBuilder;
+    }
 
     Specialization(String name) {
         this.name = name;

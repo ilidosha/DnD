@@ -60,6 +60,15 @@ public enum Stat {
         throw new Resources.NotFoundException("Стата не найдена");
     }
 
+    public static Stat getStatFromName(String string){
+        for (Stat stat: Stat.values()){
+            if (stat.getName().equals(string)){
+                return stat;
+            }
+        }
+        throw new Resources.NotFoundException("Стата не найдена");
+    }
+
     Stat(String name) {
         this.name=name;
     }

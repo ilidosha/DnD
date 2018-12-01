@@ -12,6 +12,8 @@ import com.example.ilidosha.dnd.Utils.RandomUtils;
 import com.example.ilidosha.dnd.database.SkillsConstants;
 import com.example.ilidosha.dnd.pages.LayoutPage;
 
+import static com.example.ilidosha.dnd.enities.Performance.PERCEPTION;
+
 public enum Race implements SkillsConstants {
     HALF_ORC("Полуорк") {
         @Override
@@ -139,7 +141,7 @@ public enum Race implements SkillsConstants {
 
         }
     },
-    FOREST_ELD("Лесной эльф") {//TODO: владение навыком "Внимательность"
+    FOREST_ELD("Лесной эльф") {
         @Override
         public void applyRaceBonusOnCharacter(Character character, Context context) {
             for (Stat stat : character.getStats()) {
@@ -152,6 +154,8 @@ public enum Race implements SkillsConstants {
                         break;
                 }
             }
+            character.getPerformances().remove(PERCEPTION);
+            character.getPerformances().add(PERCEPTION);
             character.setSpeed(35);
             character.getSkills().add(DARK_VISION);
             character.getSkills().add(HIGH_SENSITIVITY);

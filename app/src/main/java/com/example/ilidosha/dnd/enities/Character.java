@@ -36,8 +36,17 @@ public class Character {
     @JsonIgnore
     private List<CustomBuilder> notifications = new ArrayList<>();
     private SpellCells spellCells = new SpellCells();
+    private String additionalInfo;
 
 
+
+    public void setAdditionalInfo(String additionalInfo) {
+        this.additionalInfo = additionalInfo;
+    }
+
+    public String getAdditionalInfo() {
+        return additionalInfo;
+    }
 
     public SpellCells getSpellCells() {
         return spellCells;
