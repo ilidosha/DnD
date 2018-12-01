@@ -253,38 +253,6 @@ public class LayoutPage extends FragmentActivity {
         alert.show();
     }
 
-    public void onCreateCharacterButton(final View view) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(true)
-                .setTitle("Вы уверены, что всё правильно заполнено?")
-                .setPositiveButton("Создать",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                com.example.ilidosha.dnd.enities.Character testCharacter =
-                                        new com.example.ilidosha.dnd.enities.Character();
-                                if (!validatorServiceCharacter.validationCreateCharacter(testCharacter)) {
-                                    Toast.makeText(LayoutPage.this, R.string.validation_failed, Toast.LENGTH_LONG)
-                                            .show();
-                                    return;
-                                }
-                                character = new com.example.ilidosha.dnd.enities.Character();
-                                fillCharacterInfoFromView(character);
-                                character.getRace().applyRaceBonusOnCharacter(character, LayoutPage.this);
-                                setAllSkills(spells);
-                                navigation.setVisibility(View.VISIBLE);
-                                toMainMenu();
-                            }
-                        })
-                .setNegativeButton("Отмена",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
-        AlertDialog alert = builder.create();
-        alert.show();
-    }
-
     public void onChangeSpecializationButton(final View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Выбор класса");
@@ -335,6 +303,8 @@ public class LayoutPage extends FragmentActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        Toast.makeText(LayoutPage.this, "Персонаж успешно сохранён", Toast.LENGTH_LONG)
+                .show();
     }
 
     public void onUploadCharacterButton(View view){
@@ -367,6 +337,40 @@ public class LayoutPage extends FragmentActivity {
         });
         builder.setCancelable(true);
         builder.create().show();
+    }
+
+    public void onCreateCharacterButton(final View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true)
+                .setTitle("Вы уверены, что всё правильно заполнено?")
+                .setPositiveButton("Создать",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                com.example.ilidosha.dnd.enities.Character testCharacter =
+                                        new com.example.ilidosha.dnd.enities.Character();
+                                if (!validatorServiceCharacter.validationCreateCharacter(testCharacter)) {
+                                    Toast.makeText(LayoutPage.this, R.string.validation_failed, Toast.LENGTH_LONG)
+                                            .show();
+                                    return;
+                                }
+                                character = new com.example.ilidosha.dnd.enities.Character();
+                                fillCharacterInfoFromView(character);
+                                character.getRace().applyRaceBonusOnCharacter(character, LayoutPage.this);
+                                character.getSpecialization().applySpecializationBonusOnCharacter(character, LayoutPage.this);
+                                character.getArchetype().applyArchetypeBonusOnCharacter(character,LayoutPage.this);
+                                setAllSkills(spells);
+                                navigation.setVisibility(View.VISIBLE);
+                                toMainMenu();
+                            }
+                        })
+                .setNegativeButton("Отмена",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
     public void onOpenCreateCharacterButton(final View view) {

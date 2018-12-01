@@ -35,8 +35,13 @@ public class Character {
     private Uri photo;
     @JsonIgnore
     private List<CustomBuilder> notifications = new ArrayList<>();
+    private SpellCells spellCells = new SpellCells();
 
 
+
+    public SpellCells getSpellCells() {
+        return spellCells;
+    }
 
     public List<CustomBuilder> getNotifications() {
         return notifications;

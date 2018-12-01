@@ -1,5 +1,7 @@
 package com.example.ilidosha.dnd.pages;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,7 +14,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import com.example.ilidosha.dnd.R;
+import com.example.ilidosha.dnd.enities.CustomBuilder;
 import com.example.ilidosha.dnd.enities.Spell;
+import com.example.ilidosha.dnd.enities.Stat;
 
 import static com.example.ilidosha.dnd.pages.LayoutPage.*;
 
@@ -39,8 +43,44 @@ public class MySpells extends Fragment {
         }
     };
 
+    private View.OnClickListener listenerCell = new View.OnClickListener() {
+        @Override
+        public void onClick(final View view) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            final int index = (int)view.getTag();
+            builder.setTitle("Изменение ячеек заклинаний");
+            builder.setPositiveButton("- 1",  new DialogInterface.OnClickListener(){
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    character.getSpellCells().getLevel()[index]=character.getSpellCells().getLevel()[index]-1;
+                    ((Button)view).setText((index+1)+" уровень: "+character.getSpellCells().getLevel()[index]+"/"+character.getSpellCells().getMaxLevel()[index]);
+                }
+            });
+            builder.setNegativeButton("Восстановить", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    character.getSpellCells().getLevel()[(int)view.getTag()]=character.getSpellCells().getMaxLevel()[(int)view.getTag()];
+                    ((Button)view).setText((index+1)+" уровень: "+character.getSpellCells().getLevel()[index]+"/"+character.getSpellCells().getMaxLevel()[index]);
+                }
+            });
+            builder.setCancelable(true);
+            builder.create().show();
+        }
+    };
+
     private void renderSpells(View view){
         LinearLayout layout = view.findViewById(R.id.linearLayoutMySkillsTable);
+        for (int i=0;i<9;++i){
+            LinearLayout spellCells = view.findViewById(R.id.linearLayoutSpellCells);
+            if (character.getSpellCells().getMaxLevel()[i]!=0){
+                Button button = new Button(getContext());
+                button.setTag(i);
+                button.setText((i+1)+" уровень: "+character.getSpellCells().getLevel()[i]+"/"+character.getSpellCells().getMaxLevel()[i]);
+                button.setOnClickListener(listenerCell);
+                spellCells.addView(button);
+            }
+        }
+
         for (Spell spell:character.getSpells()){
             Button button = new Button(getContext());
             button.setTag(spell);

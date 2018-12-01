@@ -45,7 +45,7 @@
                         android:text="TextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" android:id="@+id/textViewChooseNumber"
-                        android:visibility="gone"/>
+                        android:visibility="gone" android:textSize="18sp" android:padding="5dp"/>
                 <CheckBox
                         android:text="Атлетика"
                         android:layout_width="match_parent"
